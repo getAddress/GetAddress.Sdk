@@ -14,6 +14,11 @@ namespace GetAddress.Sdk
             this.httpClient = httpClient ?? GetHttpClient();
         }
 
+        public FindResult Find(string postcode, FindOptions options = default)
+        {
+
+        }
+
         private HttpClient GetHttpClient()
         {
             var client = new HttpClient();

@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee Smith</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0</Version>
+    <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
 
 </Project>
