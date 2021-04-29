@@ -6,6 +6,23 @@ namespace GetAddress.Sdk.Tests
 {
     public static class Helpers
     {
+
+        public static class ApiHelper
+        {
+            public static GetAddressApi GetApi()
+            {
+                var apiKey = Helpers.KeyHelper.GetApiKey();
+
+                var adminKey = Helpers.KeyHelper.GetAdminKey();
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var api = new GetAddressApi(apiKey, adminKey);
+                api.BaseAddress = testServerUri;
+
+                return api;
+            }
+        }
         public static class UrlHelper
         {
             public static Uri GetTestServerUri()
