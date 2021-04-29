@@ -15,7 +15,5 @@ namespace GetAddress.Sdk
 
         [JsonProperty("addresses")]
         public Address[] Addresses { get; set; }
-
-      
     }
 }

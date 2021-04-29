@@ -14,7 +14,7 @@ namespace GetAddress.Sdk
 
         public GetAddressApi(HttpClient httpClient = null)
         {
-            this.httpClient = httpClient ?? GetHttpClient();
+            this.httpClient = httpClient ?? new HttpClient();
         }
         public GetAddressApi(string apiKey, string administrationKey, HttpClient httpClient = null):this(httpClient)
         {
@@ -81,12 +81,7 @@ namespace GetAddress.Sdk
             return $"Find/{postcode}/{options.HouseNameOrNumber}";
         }
 
-        private HttpClient GetHttpClient()
-        {
-            var client = new HttpClient();
-            
-            return client;
-        }
+        
 
         public Uri BaseAddress
         {
