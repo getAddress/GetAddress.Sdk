@@ -6,5 +6,6 @@ namespace GetAddress.Sdk
 {
     public class FindOptions
     {
+        public string HouseNameOrNumber { get; set; }
     }
 }

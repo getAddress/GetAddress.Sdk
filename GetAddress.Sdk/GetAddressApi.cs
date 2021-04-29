@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GetAddress.Sdk
 {
@@ -14,16 +17,26 @@ namespace GetAddress.Sdk
             this.httpClient = httpClient ?? GetHttpClient();
         }
 
-        public FindResult Find(string postcode, FindOptions options = default)
+        public async Task<FindResult> Find(string postcode, FindOptions options = default, CancellationToken cancellationToken = default)//todo: optional auth token
         {
+            var response = await httpClient.GetAsync($"Find/{postcode}", cancellationToken);
 
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                var result = JsonConvert.DeserializeObject<SuccessfulFindResult>(content);
+
+                return result;
+            }
+            //todo: return specific failed result
+            return null;
         }
 
         private HttpClient GetHttpClient()
         {
             var client = new HttpClient();
-            client.BaseAddress = BaseAddress;
-
+            httpClient.BaseAddress = BaseAddress;
             return client;
         }
 
@@ -33,6 +46,7 @@ namespace GetAddress.Sdk
             set;
         } = new Uri("https://api.getaddress.io");
 
+        
         public string ApiKey { get; set; }
         public string AdministrationKey { get; set; }
     }
