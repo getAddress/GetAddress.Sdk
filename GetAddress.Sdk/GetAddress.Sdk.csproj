@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,6 +8,9 @@
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
+    <PackageId>getAddress.Sdk</PackageId>
+    <Product>getAddress.Sdk</Product>
+    <PackageReleaseNotes>New Version</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

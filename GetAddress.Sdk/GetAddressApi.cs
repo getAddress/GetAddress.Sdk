@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,11 +26,9 @@ namespace GetAddress.Sdk
         {
             options = options ?? new FindOptions();
 
-            var path = GetFindPath(postcode,options);
+            var requestUri = GetFindUri(postcode, options);
 
-            httpClient.BaseAddress = GetFindUri();
-
-            var response = await httpClient.GetAsync(path, cancellationToken);
+            var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
             var content = await response.Content.ReadAsStringAsync();
 
@@ -45,10 +44,11 @@ namespace GetAddress.Sdk
             return new Result<SuccessfulFind>(failed);
         }
 
-        private Uri GetFindUri()
+        private Uri GetFindUri(string postcode, FindOptions options)
         {
-
             var uriBuilder = new UriBuilder(BaseAddress);
+
+            uriBuilder.Path = GetFindPath(postcode, options);
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
@@ -61,23 +61,19 @@ namespace GetAddress.Sdk
                 throw new Exception();//todo: may have token
             }
             
-            query.Add("api-version", ApiVersion);
+            query.Add("api-version", options.Version);
 
             query.Add("expand", true.ToString());
 
-            
             uriBuilder.Query = query.ToString();
 
-            var urlStr = uriBuilder.ToString();
+            return uriBuilder.Uri;
 
-            var uri = new Uri(urlStr);
-
-            return uri;
         }
 
         private string GetFindPath(string postcode, FindOptions options)
         {
-            if (!string.IsNullOrWhiteSpace(options.HouseNameOrNumber))
+            if (string.IsNullOrWhiteSpace(options.HouseNameOrNumber))
             {
                 return $"Find/{postcode}";
             }
@@ -88,7 +84,7 @@ namespace GetAddress.Sdk
         private HttpClient GetHttpClient()
         {
             var client = new HttpClient();
-            httpClient.BaseAddress = BaseAddress;
+            
             return client;
         }
 
@@ -96,7 +92,7 @@ namespace GetAddress.Sdk
         {
             get;
             set;
-        } = new Uri("https://api.getaddress.io");
+        } = new Uri("https://api.getaddress.io/");
 
         
         public string ApiKey { get; set; }
