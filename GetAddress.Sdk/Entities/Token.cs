@@ -7,10 +7,10 @@ namespace GetAddress.Sdk
     
     public class Tokens
     {
-        [JsonProperty("access_token")]
+        [JsonProperty("access")]
         public AccessToken Access { get; set; }
 
-        [JsonProperty("refresh_token")]
+        [JsonProperty("refresh")]
         public RefreshToken Refresh { get; set; }
     }
 

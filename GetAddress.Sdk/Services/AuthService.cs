@@ -7,16 +7,31 @@ using System.Web;
 
 namespace GetAddress.Sdk.Services
 {
-    public class AuthService //todo: base class
+    public class Security
     {
-        public const string Path = "security/token/";
-        private readonly HttpClient httpClient;
+        private readonly AuthService authService;
 
-        public AuthService(string administrationKey, HttpClient httpClient = null)
+        public AuthService Token
         {
-            AdministrationKey = administrationKey;
+            get
+            {
+                return authService;
+            }
+        }
 
-            this.httpClient = httpClient ?? new HttpClient();
+        public Security(string administrationKey, HttpClient httpClient = null)
+        {
+            authService = new AuthService(administrationKey, httpClient);
+        }
+    }
+
+    public class AuthService: AdministrationService
+    {
+        public const string Path = "security/token";
+
+        public AuthService(string administrationKey, HttpClient httpClient = null):base(administrationKey,httpClient)
+        {
+
         }
 
         public async Task<Result<SuccessfulAuth>> Get(string administrationKey = null, CancellationToken cancellationToken = default)
@@ -31,12 +46,12 @@ namespace GetAddress.Sdk.Services
             {
                 var success = JsonConvert.DeserializeObject<SuccessfulAuth>(content);
 
-                return new Result<SuccessfulAuth>(success);
+                return new Result<SuccessfulAuth>(success, response.StatusCode);
             }
 
             var failed = JsonConvert.DeserializeObject<Failed>(content);
 
-            return new Result<SuccessfulAuth>(failed);
+            return new Result<SuccessfulAuth>(failed, response.StatusCode);
         }
 
         private Uri GetUri(string administrationKey = null)
@@ -55,7 +70,7 @@ namespace GetAddress.Sdk.Services
             }
             else
             {
-                throw new Exception();//todo: add message
+                throw new Exception("administration key required");
             }
 
             uriBuilder.Query = query.ToString();
@@ -63,12 +78,8 @@ namespace GetAddress.Sdk.Services
             return uriBuilder.Uri;
         }
 
-        public string AdministrationKey { get; set; }
-
-        public Uri BaseAddress
-        {
-            get;
-            set;
-        } = new Uri("https://api.getaddress.io/");
     }
+
+        
+    
 }

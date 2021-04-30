@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GetAddress.Sdk.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Net.Http;
@@ -20,9 +21,16 @@ namespace GetAddress.Sdk
         {
             ApiKey = apiKey;
             AdministrationKey = administrationKey;
+            Security = new Security(administrationKey, httpClient);
         }
 
-        public async Task<Result<SuccessfulFind>> Find(string postcode, FindOptions options = default, CancellationToken cancellationToken = default)//todo: optional auth token
+        public Security Security
+        {
+            get;
+        } 
+
+        public async Task<Result<SuccessfulFind>> Find(string postcode, 
+            FindOptions options = default,  CancellationToken cancellationToken = default)//todo: optional auth token
         {
             options = options ?? new FindOptions();
 
@@ -36,12 +44,12 @@ namespace GetAddress.Sdk
             {
                 var success = JsonConvert.DeserializeObject<SuccessfulFind>(content);
 
-                return new Result<SuccessfulFind>(success);
+                return new Result<SuccessfulFind>(success,response.StatusCode);
             }
             
             var failed = JsonConvert.DeserializeObject<Failed>(content);
 
-            return new Result<SuccessfulFind>(failed);
+            return new Result<SuccessfulFind>(failed, response.StatusCode);
         }
 
         private Uri GetFindUri(string postcode, FindOptions options)
