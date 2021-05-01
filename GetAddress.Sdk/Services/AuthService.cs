@@ -19,24 +19,46 @@ namespace GetAddress.Sdk.Services
             }
         }
 
-        public Security(string administrationKey, HttpClient httpClient = null)
+        public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
         {
-            authService = new AuthService(administrationKey, httpClient);
+            authService = new AuthService(apiKey, administrationKey, httpClient);
         }
     }
 
-    public class AuthService: AdministrationService
+    public class AuthService: Service
     {
         public const string Path = "security/token";
 
-        public AuthService(string administrationKey, HttpClient httpClient = null):base(administrationKey,httpClient)
+        public AuthService(string apiKey, string administrationKey, HttpClient httpClient = null):base(httpClient)
         {
-
+            ApiKey = apiKey;
+            AdministrationKey = administrationKey;
         }
 
-        public async Task<Result<SuccessfulAuth>> Get(string administrationKey = null, CancellationToken cancellationToken = default)
+        public string ApiKey { get; set; }
+
+        public string AdministrationKey { get; set; }
+
+        public  async Task<Result<SuccessfulAuth>> GetAdministrationTokens(string administrationKey = null, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri(administrationKey);
+            administrationKey = administrationKey ?? AdministrationKey;
+
+            return await Get(administrationKey, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<SuccessfulAuth>> GetTokens(string apiKey = null, CancellationToken cancellationToken = default)
+        {
+            apiKey = apiKey ?? ApiKey;
+
+            return await Get(apiKey, cancellationToken: cancellationToken);
+        }
+
+
+        private async Task<Result<SuccessfulAuth>> Get(string administrationOrApiKey = null, CancellationToken cancellationToken = default)
+        {
+            
+
+            var requestUri = GetUri(administrationOrApiKey);
 
             var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
@@ -54,7 +76,7 @@ namespace GetAddress.Sdk.Services
             return new Result<SuccessfulAuth>(failed, response.StatusCode);
         }
 
-        private Uri GetUri(string administrationKey = null)
+        private Uri GetUri(string administrationOrApiKey = null)
         {
             var uriBuilder = new UriBuilder(BaseAddress);
 
@@ -62,11 +84,9 @@ namespace GetAddress.Sdk.Services
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            administrationKey = administrationKey ?? AdministrationKey;
-
-            if (!string.IsNullOrWhiteSpace(administrationKey))
+            if (!string.IsNullOrWhiteSpace(administrationOrApiKey))
             {
-                query.Add("api-key", administrationKey);
+                query.Add("api-key", administrationOrApiKey);
             }
             else
             {

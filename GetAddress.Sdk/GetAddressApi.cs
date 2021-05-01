@@ -21,7 +21,7 @@ namespace GetAddress.Sdk
         {
             ApiKey = apiKey;
             AdministrationKey = administrationKey;
-            Security = new Security(administrationKey, httpClient);
+            Security = new Security(apiKey, administrationKey, httpClient);
         }
 
         public Security Security
@@ -30,11 +30,11 @@ namespace GetAddress.Sdk
         } 
 
         public async Task<Result<SuccessfulFind>> Find(string postcode, 
-            FindOptions options = default,  CancellationToken cancellationToken = default)//todo: optional auth token
+            FindOptions options = default, AccessToken accessToken = default,  CancellationToken cancellationToken = default)//todo: optional auth token
         {
             options = options ?? new FindOptions();
 
-            var requestUri = GetFindUri(postcode, options);
+            var requestUri = GetFindUri(postcode, options, accessToken);
 
             var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
@@ -52,7 +52,7 @@ namespace GetAddress.Sdk
             return new Result<SuccessfulFind>(failed, response.StatusCode);
         }
 
-        private Uri GetFindUri(string postcode, FindOptions options)
+        private Uri GetFindUri(string postcode, FindOptions options, AccessToken accessToken = default)
         {
             var uriBuilder = new UriBuilder(BaseAddress);
 
@@ -60,7 +60,11 @@ namespace GetAddress.Sdk
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            if (!string.IsNullOrWhiteSpace(ApiKey))
+            if(accessToken != default)
+            {
+                httpClient.SetBearerToken(accessToken.Value);
+            }
+            else if (!string.IsNullOrWhiteSpace(ApiKey))
             {
                 query.Add("api-key", ApiKey);
             }
