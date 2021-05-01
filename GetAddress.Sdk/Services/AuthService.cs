@@ -74,15 +74,45 @@ namespace GetAddress.Sdk.Services
             return new Result<SuccessfulAuth>(failed, json, response.StatusCode);
         }
 
-        private Uri GetUri(string administrationOrApiKey = null)
+        public async Task<Result<SuccessfulAuth>> Refresh(RefreshToken refreshToken, CancellationToken cancellationToken = default)
+        {
+            var path = Path + "/refresh";
+
+            var requestUri = GetUri(refreshToken:refreshToken,path:path);
+
+            var response = await httpClient.PostAsync(requestUri,null, cancellationToken: cancellationToken);
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var success = JsonConvert.DeserializeObject<SuccessfulAuth>(json);
+
+                return new Result<SuccessfulAuth>(success, json, response.StatusCode);
+            }
+
+            var failed = JsonConvert.DeserializeObject<Failed>(json);
+
+            return new Result<SuccessfulAuth>(failed, json, response.StatusCode);
+        }
+
+        private Uri GetUri(string administrationOrApiKey = null, RefreshToken refreshToken = default, string path = null)
         {
             var uriBuilder = new UriBuilder(BaseAddress);
 
-            uriBuilder.Path = Path;
+            path = path ?? Path;
+
+            uriBuilder.Path = path;
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            if (!string.IsNullOrWhiteSpace(administrationOrApiKey))
+            httpClient.ClearAuthorization();
+
+            if(refreshToken != null)
+            {
+                httpClient.SetBearerToken(refreshToken.Value);
+            }
+            else if(!string.IsNullOrWhiteSpace(administrationOrApiKey))
             {
                 query.Add("api-key", administrationOrApiKey);
             }

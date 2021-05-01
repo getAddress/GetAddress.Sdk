@@ -22,7 +22,7 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var authResult = await api.Security.Token.Get();
+            var authResult = await api.Security.Token.GetTokens();
 
             authResult.IsSuccess.ShouldBeTrue();
 
@@ -31,6 +31,14 @@ namespace GetAddress.Sdk.Tests
             var result = await api.Find("TR19 7AA", accessToken: auth.Tokens.Access);
 
             result.IsSuccess.ShouldBeTrue();
+
+            var result2 = await api.Find("TR19 7AA");
+
+            result2.IsSuccess.ShouldBeTrue();
+
+            var result3 = await api.Find("TR19 7AA", accessToken: auth.Tokens.Access);
+
+            result3.IsSuccess.ShouldBeTrue();
         }
 
         [Fact]

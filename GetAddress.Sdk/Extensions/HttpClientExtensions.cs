@@ -8,6 +8,14 @@ namespace GetAddress.Sdk
 {
     internal static class HttpClientExtensions
     {
+        public static void ClearAuthorization(this HttpClient client)
+        {
+            if (client.DefaultRequestHeaders.Contains("Authorization"))
+            {
+                client.DefaultRequestHeaders.Remove("Authorization");
+            }
+        }
+
         public static void SetToken(this HttpClient client, string scheme, string token)
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme, token);

@@ -60,7 +60,9 @@ namespace GetAddress.Sdk
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            if(accessToken != default)
+            httpClient.ClearAuthorization();
+
+            if (accessToken != default)
             {
                 httpClient.SetBearerToken(accessToken.Value);
             }
