@@ -5,6 +5,7 @@ namespace GetAddress.Sdk
 {
     public  class Result<S>
     {
+        public string Json { get; }
         public HttpStatusCode StatusCode { get; }
 
         public bool IsSuccess { get; }
@@ -25,17 +26,18 @@ namespace GetAddress.Sdk
             return IsSuccess;
         }
 
-        public Result(HttpStatusCode statusCode)
+        public Result(string json, HttpStatusCode statusCode)
         {
+            Json = json;
             StatusCode = statusCode;
         }
 
-        public Result(S success, HttpStatusCode statusCode) :this(statusCode)
+        public Result(S success, string json, HttpStatusCode statusCode) :this(json,statusCode)
         {
             Success = success;
             IsSuccess = true;
         }
-        public Result(Failed failed, HttpStatusCode statusCode) : this(statusCode)
+        public Result(Failed failed, string json, HttpStatusCode statusCode) : this(json,statusCode)
         {
             Failed = failed ?? throw new System.ArgumentNullException(nameof(failed));
             IsSuccess = false;

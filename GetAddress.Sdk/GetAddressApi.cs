@@ -38,18 +38,18 @@ namespace GetAddress.Sdk
 
             var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
-            var content = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                var success = JsonConvert.DeserializeObject<SuccessfulFind>(content);
+                var success = JsonConvert.DeserializeObject<SuccessfulFind>(json);
 
-                return new Result<SuccessfulFind>(success,response.StatusCode);
+                return new Result<SuccessfulFind>(success, json, response.StatusCode);
             }
             
-            var failed = JsonConvert.DeserializeObject<Failed>(content);
+            var failed = JsonConvert.DeserializeObject<Failed>(json);
 
-            return new Result<SuccessfulFind>(failed, response.StatusCode);
+            return new Result<SuccessfulFind>(failed, json, response.StatusCode);
         }
 
         private Uri GetFindUri(string postcode, FindOptions options, AccessToken accessToken = default)

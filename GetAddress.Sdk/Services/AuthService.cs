@@ -56,24 +56,22 @@ namespace GetAddress.Sdk.Services
 
         private async Task<Result<SuccessfulAuth>> Get(string administrationOrApiKey = null, CancellationToken cancellationToken = default)
         {
-            
-
             var requestUri = GetUri(administrationOrApiKey);
 
             var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
-            var content = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                var success = JsonConvert.DeserializeObject<SuccessfulAuth>(content);
+                var success = JsonConvert.DeserializeObject<SuccessfulAuth>(json);
 
-                return new Result<SuccessfulAuth>(success, response.StatusCode);
+                return new Result<SuccessfulAuth>(success, json,response.StatusCode);
             }
 
-            var failed = JsonConvert.DeserializeObject<Failed>(content);
+            var failed = JsonConvert.DeserializeObject<Failed>(json);
 
-            return new Result<SuccessfulAuth>(failed, response.StatusCode);
+            return new Result<SuccessfulAuth>(failed, json, response.StatusCode);
         }
 
         private Uri GetUri(string administrationOrApiKey = null)
