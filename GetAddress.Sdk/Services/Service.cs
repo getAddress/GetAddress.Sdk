@@ -9,30 +9,26 @@ namespace GetAddress.Sdk.Services
 {
     public abstract class Service
     {
-        protected readonly HttpClient httpClient;
+        public HttpClient HttpClient { get; }
 
         protected Service(HttpClient httpClient = null)
         {
-            this.httpClient = httpClient ?? new HttpClient();
+            this.HttpClient = httpClient ?? new GetAddressHttpClient();
         }
 
-        public Uri BaseAddress
-        {
-            get;
-            set;
-        } = new Uri("https://api.getaddress.io/");
+        
 
         private void SetAuthorization(string administrationOrApiKey = null, Token token = default)
         {
-            httpClient.ClearAuthorization();
+            HttpClient.ClearAuthorization();
 
             if (token != null)
             {
-                httpClient.SetBearerToken(token.Value);
+                HttpClient.SetBearerToken(token.Value);
             }
             else if (!string.IsNullOrWhiteSpace(administrationOrApiKey))
             {
-                httpClient.SetApiKeyAuthorization(administrationOrApiKey);
+                HttpClient.SetApiKeyAuthorization(administrationOrApiKey);
             }
             else
             {
@@ -45,7 +41,7 @@ namespace GetAddress.Sdk.Services
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            return await httpClient.GetAsync(requestUri, cancellationToken);
+            return await HttpClient.GetAsync(requestUri, cancellationToken);
         }
 
         protected async Task<HttpResponseMessage> HttpPost(Uri requestUri,HttpContent httpContent = null, string administrationOrApiKey = null,
@@ -53,12 +49,12 @@ namespace GetAddress.Sdk.Services
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            return await httpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+            return await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
         }
 
         protected Uri GetUri(string path, NameValueCollection nameValueCollection = null)
         {
-            var uriBuilder = new UriBuilder(BaseAddress);
+            var uriBuilder = new UriBuilder(HttpClient.BaseAddress); 
 
             uriBuilder.Path = path;
 

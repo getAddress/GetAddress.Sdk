@@ -30,7 +30,12 @@ namespace GetAddress.Sdk.Services
     {
         public const string Path = "security/token";
 
-        public AuthService(string apiKey, string administrationKey, HttpClient httpClient = null):base(httpClient)
+        public AuthService(HttpClient httpClient = null) : base(httpClient)
+        {
+
+        }
+
+        public AuthService(string apiKey, string administrationKey, HttpClient httpClient = null):this(httpClient)
         {
             ApiKey = apiKey;
             AdministrationKey = administrationKey;

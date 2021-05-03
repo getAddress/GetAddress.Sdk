@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace GetAddress.Sdk.Tests
@@ -17,9 +18,11 @@ namespace GetAddress.Sdk.Tests
 
                 var testServerUri = Helpers.UrlHelper.GetTestServerUri();
 
-                var api = new GetAddressApi(apiKey, adminKey);
-                api.BaseAddress = testServerUri;
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
 
+                var api = new GetAddressApi(apiKey, adminKey, httpClient: httpClient);
+                
                 return api;
             }
         }
