@@ -43,6 +43,8 @@ namespace GetAddress.Sdk.Tests
         {
             public static Uri GetTestServerUri()
             {
+               // return new Uri("https://localhost:44356/");
+
                 var url = Environment.GetEnvironmentVariable("getaddress_staging_url", EnvironmentVariableTarget.User);
 
                 if (string.IsNullOrWhiteSpace(url)) throw new Exception("Add your staging url to your Environmental Variables");
