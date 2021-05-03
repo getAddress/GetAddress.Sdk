@@ -9,6 +9,12 @@ namespace GetAddress.Sdk
 
     internal static class HttpClientExtensions
     {
+        public  static HttpClient SetBaseAddress(this HttpClient client)
+        {
+            client.BaseAddress = new Uri("https://api.getaddress.io/");
+            return client;
+        }
+
         public static void ClearAuthorization(this HttpClient client)
         {
             if (client.DefaultRequestHeaders.Contains("Authorization"))
