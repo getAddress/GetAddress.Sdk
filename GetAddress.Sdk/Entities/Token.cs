@@ -14,19 +14,18 @@ namespace GetAddress.Sdk
         public RefreshToken Refresh { get; set; }
     }
 
-    public class AccessToken
+    public class Token
     {
         [JsonProperty("value")]
         public string Value { get; set; }
-
+    }
+    public class AccessToken:Token
+    {
         [JsonProperty("expires")]
         public DateTime Expires { get; set; }
     }
-    public class RefreshToken
+    public class RefreshToken:Token
     {
-        [JsonProperty("value")]
-        public string Value { get; set; }
-
         [JsonProperty("expires")]
         public DateTime Expires { get; set; }
 

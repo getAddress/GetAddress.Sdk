@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,75 +57,39 @@ namespace GetAddress.Sdk.Services
 
         private async Task<Result<SuccessfulAuth>> Get(string administrationOrApiKey = null, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri(administrationOrApiKey);
+            var requestUri = GetUri(Path);
 
-            var response = await httpClient.GetAsync(requestUri, cancellationToken);
+            var response = await HttpGet(requestUri, administrationOrApiKey: administrationOrApiKey, cancellationToken: cancellationToken);
 
-            var json = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
-            {
-                var success = JsonConvert.DeserializeObject<SuccessfulAuth>(json);
-
-                return new Result<SuccessfulAuth>(success, json,response.StatusCode);
-            }
-
-            var failed = JsonConvert.DeserializeObject<Failed>(json);
-
-            return new Result<SuccessfulAuth>(failed, json, response.StatusCode);
+            return await response.ToResult<SuccessfulAuth>();
         }
+
+        
 
         public async Task<Result<SuccessfulAuth>> Refresh(RefreshToken refreshToken, CancellationToken cancellationToken = default)
         {
             var path = Path + "/refresh";
 
-            var requestUri = GetUri(refreshToken:refreshToken,path:path);
+            var requestUri = GetUri(path);
 
-            var response = await httpClient.PostAsync(requestUri,null, cancellationToken: cancellationToken);
+            var response = await HttpPost(requestUri, token:refreshToken, cancellationToken: cancellationToken);
 
-            var json = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
-            {
-                var success = JsonConvert.DeserializeObject<SuccessfulAuth>(json);
-
-                return new Result<SuccessfulAuth>(success, json, response.StatusCode);
-            }
-
-            var failed = JsonConvert.DeserializeObject<Failed>(json);
-
-            return new Result<SuccessfulAuth>(failed, json, response.StatusCode);
+            return await response.ToResult<SuccessfulAuth>();
         }
 
-        private Uri GetUri(string administrationOrApiKey = null, RefreshToken refreshToken = default, string path = null)
+        public async Task<Result<SuccessfulAuthRevoke>> Revoke(string administrationKey = null, CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new UriBuilder(BaseAddress);
+            var path = Path + "/revoke";
 
-            path = path ?? Path;
+            var requestUri = GetUri(path);
 
-            uriBuilder.Path = path;
+            administrationKey = administrationKey ?? AdministrationKey;
 
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+            var response = await HttpPost(requestUri, administrationOrApiKey:administrationKey, cancellationToken: cancellationToken);
 
-            httpClient.ClearAuthorization();
-
-            if(refreshToken != null)
-            {
-                httpClient.SetBearerToken(refreshToken.Value);
-            }
-            else if(!string.IsNullOrWhiteSpace(administrationOrApiKey))
-            {
-                query.Add("api-key", administrationOrApiKey);
-            }
-            else
-            {
-                throw new Exception("administration key required");
-            }
-
-            uriBuilder.Query = query.ToString();
-
-            return uriBuilder.Uri;
+            return await response.ToResult<SuccessfulAuthRevoke>();
         }
+        
 
     }
 

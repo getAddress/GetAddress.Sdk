@@ -32,5 +32,21 @@ namespace GetAddress.Sdk.Tests
 
             result.IsSuccess.ShouldBeTrue();
         }
+
+        [Fact]
+        public async Task Given_Valid_Administration_Key_Token_Revoke_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var tokensResult = await api.Security.Token.GetAdministrationTokens();
+
+            tokensResult.IsSuccess.ShouldBeTrue();
+
+            var success = tokensResult.Success;
+
+            var result = await api.Security.Token.Revoke();
+
+            result.IsSuccess.ShouldBeTrue();
+        }
     }
 }

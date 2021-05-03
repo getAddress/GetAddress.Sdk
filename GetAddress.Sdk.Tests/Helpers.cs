@@ -13,7 +13,7 @@ namespace GetAddress.Sdk.Tests
             {
                 var apiKey = Helpers.KeyHelper.GetApiKey();
 
-                var adminKey = Helpers.KeyHelper.GetApiKey(); //Helpers.KeyHelper.GetAdminKey();
+                var adminKey = Helpers.KeyHelper.GetAdminKey();
 
                 var testServerUri = Helpers.UrlHelper.GetTestServerUri();
 
