@@ -30,10 +30,7 @@ namespace GetAddress.Sdk.Services
             {
                 HttpClient.SetApiKeyAuthorization(administrationOrApiKey);
             }
-            else
-            {
-                throw new Exception("administration key required");
-            }
+
         }
 
         protected async Task<HttpResponseMessage> HttpGet(Uri requestUri, string administrationOrApiKey = null,

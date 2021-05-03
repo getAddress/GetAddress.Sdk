@@ -11,6 +11,7 @@ namespace GetAddress.Sdk
         private readonly FindService findService;
         private readonly AutocompleteService autocompleteService;
         private readonly GetService getService;
+        private readonly TypeaheadService typeaheadService;
 
         public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
@@ -23,6 +24,7 @@ namespace GetAddress.Sdk
             findService = new FindService(apiKey, httpClient: httpClient);
             autocompleteService = new AutocompleteService(apiKey, httpClient: httpClient);
             getService = new GetService(apiKey, httpClient: httpClient);
+            typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
         }
 
         public Security Security
@@ -42,6 +44,11 @@ namespace GetAddress.Sdk
         public async Task<Result<SuccessfulGet>> Get(Suggestion  suggestion, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
             return await getService.Get(suggestion,accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<string[]>> Typeahead(string term, TypeaheadOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await typeaheadService.Typeahead(term, options:options, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
     }
