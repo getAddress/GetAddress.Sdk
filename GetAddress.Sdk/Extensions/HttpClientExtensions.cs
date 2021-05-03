@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GetAddress.Sdk
 {
-
+   
     internal static class HttpClientExtensions
     {
         public  static HttpClient SetBaseAddress(this HttpClient client)

@@ -14,6 +14,6 @@ namespace GetAddress.Sdk
         public double Longitude { get; set; }
 
         [JsonProperty("addresses")]
-        public Address[] Addresses { get; set; }
+        public Address[] Addresses { get; set; } = new Address[0];
     }
 }
