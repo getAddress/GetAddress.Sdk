@@ -25,6 +25,19 @@ namespace GetAddress.Sdk.Tests
                 
                 return api;
             }
+
+            public static GetAddressApi GetApiNoKeys()
+            {
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
+
+                var api = new GetAddressApi(httpClient: httpClient);
+
+                return api;
+            }
         }
         public static class UrlHelper
         {

@@ -28,7 +28,9 @@ namespace GetAddress.Sdk.Tests
 
             var auth = authResult.Success;
 
-            var result = await api.Find("TR19 7AA", accessToken: auth.Tokens.Access);
+            var apiNoKeys = Helpers.ApiHelper.GetApiNoKeys();
+
+            var result = await apiNoKeys.Find("TR19 7AA", accessToken: auth.Tokens.Access);
 
             result.IsSuccess.ShouldBeTrue();
 
@@ -36,7 +38,7 @@ namespace GetAddress.Sdk.Tests
 
             result2.IsSuccess.ShouldBeTrue();
 
-            var result3 = await api.Find("TR19 7AA", accessToken: auth.Tokens.Access);
+            var result3 = await apiNoKeys.Find("TR19 7AA", accessToken: auth.Tokens.Access);
 
             result3.IsSuccess.ShouldBeTrue();
         }
