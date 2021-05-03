@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GetAddress.Sdk.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Net.Http;
@@ -14,37 +15,44 @@ namespace GetAddress.Sdk
 
         public GetAddressApi(HttpClient httpClient = null)
         {
-            this.httpClient = httpClient ?? GetHttpClient();
+            this.httpClient = httpClient ?? new HttpClient();
         }
         public GetAddressApi(string apiKey, string administrationKey, HttpClient httpClient = null):this(httpClient)
         {
             ApiKey = apiKey;
             AdministrationKey = administrationKey;
+            Security = new Security(apiKey, administrationKey, httpClient);
         }
 
-        public async Task<Result<SuccessfulFind>> Find(string postcode, FindOptions options = default, CancellationToken cancellationToken = default)//todo: optional auth token
+        public Security Security
+        {
+            get;
+        } 
+
+        public async Task<Result<SuccessfulFind>> Find(string postcode, 
+            FindOptions options = default, AccessToken accessToken = default,  CancellationToken cancellationToken = default)//todo: optional auth token
         {
             options = options ?? new FindOptions();
 
-            var requestUri = GetFindUri(postcode, options);
+            var requestUri = GetFindUri(postcode, options, accessToken);
 
             var response = await httpClient.GetAsync(requestUri, cancellationToken);
 
-            var content = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                var success = JsonConvert.DeserializeObject<SuccessfulFind>(content);
+                var success = JsonConvert.DeserializeObject<SuccessfulFind>(json);
 
-                return new Result<SuccessfulFind>(success);
+                return new Result<SuccessfulFind>(success, json, response.StatusCode);
             }
             
-            var failed = JsonConvert.DeserializeObject<Failed>(content);
+            var failed = JsonConvert.DeserializeObject<Failed>(json);
 
-            return new Result<SuccessfulFind>(failed);
+            return new Result<SuccessfulFind>(failed, json, response.StatusCode);
         }
 
-        private Uri GetFindUri(string postcode, FindOptions options)
+        private Uri GetFindUri(string postcode, FindOptions options, AccessToken accessToken = default)
         {
             var uriBuilder = new UriBuilder(BaseAddress);
 
@@ -52,7 +60,13 @@ namespace GetAddress.Sdk
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            if (!string.IsNullOrWhiteSpace(ApiKey))
+            httpClient.ClearAuthorization();
+
+            if (accessToken != default)
+            {
+                httpClient.SetBearerToken(accessToken.Value);
+            }
+            else if (!string.IsNullOrWhiteSpace(ApiKey))
             {
                 query.Add("api-key", ApiKey);
             }
@@ -81,12 +95,7 @@ namespace GetAddress.Sdk
             return $"Find/{postcode}/{options.HouseNameOrNumber}";
         }
 
-        private HttpClient GetHttpClient()
-        {
-            var client = new HttpClient();
-            
-            return client;
-        }
+        
 
         public Uri BaseAddress
         {

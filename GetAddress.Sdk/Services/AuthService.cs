@@ -1,0 +1,98 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace GetAddress.Sdk.Services
+{
+    public class Security
+    {
+        private readonly AuthService authService;
+
+        public AuthService Token
+        {
+            get
+            {
+                return authService;
+            }
+        }
+
+        public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
+        {
+            authService = new AuthService(apiKey, administrationKey, httpClient);
+        }
+    }
+
+    public class AuthService: Service
+    {
+        public const string Path = "security/token";
+
+        public AuthService(string apiKey, string administrationKey, HttpClient httpClient = null):base(httpClient)
+        {
+            ApiKey = apiKey;
+            AdministrationKey = administrationKey;
+        }
+
+        public string ApiKey { get; set; }
+
+        public string AdministrationKey { get; set; }
+
+        public  async Task<Result<SuccessfulAuth>> GetAdministrationTokens(string administrationKey = null, CancellationToken cancellationToken = default)
+        {
+            administrationKey = administrationKey ?? AdministrationKey;
+
+            return await Get(administrationKey, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<SuccessfulAuth>> GetTokens(string apiKey = null, CancellationToken cancellationToken = default)
+        {
+            apiKey = apiKey ?? ApiKey;
+
+            return await Get(apiKey, cancellationToken: cancellationToken);
+        }
+
+
+        private async Task<Result<SuccessfulAuth>> Get(string administrationOrApiKey = null, CancellationToken cancellationToken = default)
+        {
+            var requestUri = GetUri(Path);
+
+            var response = await HttpGet(requestUri, administrationOrApiKey: administrationOrApiKey, cancellationToken: cancellationToken);
+
+            return await response.ToResult<SuccessfulAuth>();
+        }
+
+        
+
+        public async Task<Result<SuccessfulAuth>> Refresh(RefreshToken refreshToken, CancellationToken cancellationToken = default)
+        {
+            var path = Path + "/refresh";
+
+            var requestUri = GetUri(path);
+
+            var response = await HttpPost(requestUri, token:refreshToken, cancellationToken: cancellationToken);
+
+            return await response.ToResult<SuccessfulAuth>();
+        }
+
+        public async Task<Result<SuccessfulAuthRevoke>> Revoke(string administrationKey = null, CancellationToken cancellationToken = default)
+        {
+            var path = Path + "/revoke";
+
+            var requestUri = GetUri(path);
+
+            administrationKey = administrationKey ?? AdministrationKey;
+
+            var response = await HttpPost(requestUri, administrationOrApiKey:administrationKey, cancellationToken: cancellationToken);
+
+            return await response.ToResult<SuccessfulAuthRevoke>();
+        }
+        
+
+    }
+
+        
+    
+}
