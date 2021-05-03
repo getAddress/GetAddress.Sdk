@@ -10,6 +10,7 @@ namespace GetAddress.Sdk
 
         private readonly FindService findService;
         private readonly AutocompleteService autocompleteService;
+        private readonly GetService getService;
 
         public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
@@ -21,6 +22,7 @@ namespace GetAddress.Sdk
             Security = new Security(apiKey, administrationKey, httpClient: httpClient);
             findService = new FindService(apiKey, httpClient: httpClient);
             autocompleteService = new AutocompleteService(apiKey, httpClient: httpClient);
+            getService = new GetService(apiKey, httpClient: httpClient);
         }
 
         public Security Security
@@ -35,6 +37,11 @@ namespace GetAddress.Sdk
         public async Task<Result<SuccessfulAutocomplete>> Autocomplete(string term, AutocompleteOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
             return await autocompleteService.Autocomplete(term, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<SuccessfulGet>> Get(Suggestion  suggestion, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await getService.Get(suggestion,accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
     }
