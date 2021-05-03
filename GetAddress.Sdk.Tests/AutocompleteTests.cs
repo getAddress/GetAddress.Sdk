@@ -18,6 +18,24 @@ namespace GetAddress.Sdk.Tests
         }
 
         [Fact]
+        public async Task Given_Token_Autocomplete_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var authResult = await api.Security.Token.GetTokens();
+
+            authResult.IsSuccess.ShouldBeTrue();
+
+            var auth = authResult.Success;
+
+            var apiNoKeys = Helpers.ApiHelper.GetApiNoKeys();
+
+            var result = await apiNoKeys.Autocomplete("Codeberry Ltd", accessToken:auth.Tokens.Access);
+
+            result.IsSuccess.ShouldBeTrue();
+        }
+
+        [Fact]
         public async Task Given_Top_As_5_Autocomplete_Returns_The_Top_5()
         {
             var api = Helpers.ApiHelper.GetApi();
