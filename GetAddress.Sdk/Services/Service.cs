@@ -49,6 +49,14 @@ namespace GetAddress.Sdk.Services
             return await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
         }
 
+        protected async Task<HttpResponseMessage> HttpDelete(Uri requestUri, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default)
+        {
+            SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
+
+            return await HttpClient.DeleteAsync(requestUri, cancellationToken: cancellationToken);
+        }
+
         protected Uri GetUri(string path, NameValueCollection nameValueCollection = null)
         {
             var uriBuilder = new UriBuilder(HttpClient.BaseAddress); 
@@ -78,11 +86,11 @@ namespace GetAddress.Sdk.Services
         }
     }
 
-    public abstract class ApiKeyService : Service
+    public abstract class AddressService : Service
     {
         public string ApiKey { get; set; }
 
-        public ApiKeyService(string apiKey, HttpClient httpClient = null) : base(httpClient)
+        public AddressService(string apiKey, HttpClient httpClient = null) : base(httpClient)
         {
             ApiKey = apiKey;
         }

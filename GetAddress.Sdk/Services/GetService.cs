@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class GetService: ApiKeyService
+    public class GetService: AddressService
     {
         public GetService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
         {

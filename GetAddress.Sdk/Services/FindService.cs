@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class FindService : ApiKeyService
+    public class FindService : AddressService
     {
         public FindService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
         {

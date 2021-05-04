@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class TypeaheadService : ApiKeyService
+    public class TypeaheadService : AddressService
     {
         public TypeaheadService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
         {
