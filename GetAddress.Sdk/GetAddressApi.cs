@@ -14,6 +14,7 @@ namespace GetAddress.Sdk
         private readonly GetService getService;
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
+        private readonly DistanceService distanceService;
 
         public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
@@ -29,6 +30,7 @@ namespace GetAddress.Sdk
             typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
             InvoiceEmailRecipient = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
             usageService = new UsageService(administrationKey, httpClient: httpClient);
+            distanceService = new DistanceService(apiKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -41,9 +43,16 @@ namespace GetAddress.Sdk
             return await usageService.Get(datetime, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<Usage[]>> Usage(DateTimeOffset from, DateTimeOffset to, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public async Task<Result<Usage[]>> Usage(DateTimeOffset from, DateTimeOffset to, 
+            AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await usageService.Get(from,to, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<SuccessfulDistance>> Distance(string postcodeFrom, string postcodeTo,
+            AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
         public InvoiceEmailRecipientService InvoiceEmailRecipient
