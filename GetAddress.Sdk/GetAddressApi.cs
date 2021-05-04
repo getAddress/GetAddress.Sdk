@@ -12,7 +12,6 @@ namespace GetAddress.Sdk
         private readonly AutocompleteService autocompleteService;
         private readonly GetService getService;
         private readonly TypeaheadService typeaheadService;
-
         public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
             
@@ -25,6 +24,11 @@ namespace GetAddress.Sdk
             autocompleteService = new AutocompleteService(apiKey, httpClient: httpClient);
             getService = new GetService(apiKey, httpClient: httpClient);
             typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
+            InvoiceEmailRecipient = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
+        }
+        public InvoiceEmailRecipientService InvoiceEmailRecipient
+        {
+            get;
         }
 
         public Security Security

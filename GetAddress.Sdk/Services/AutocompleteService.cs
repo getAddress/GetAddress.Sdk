@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class AutocompleteService: ApiKeyService
+    public class AutocompleteService: AddressService
     {
         public AutocompleteService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
         {
