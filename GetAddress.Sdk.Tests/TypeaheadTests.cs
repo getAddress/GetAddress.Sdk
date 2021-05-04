@@ -45,21 +45,7 @@ namespace GetAddress.Sdk.Tests
             result.IsSuccess.ShouldBeFalse();
         }
 
-        [Fact]
-        public async Task Given_Search_Restricted_to_postcode_prefix_Typeahead_Returns_Successful_Result()
-        {
-            var api = Helpers.ApiHelper.GetApi();
-
-            var options = new TypeaheadOptions { };
-            options.Search = new List<string> { "postcode" }.ToArray();
-
-            var result = await api.Typeahead("PE", options:options);
-
-            result.IsSuccess.ShouldBeTrue();
-
-            result.Success.Length.ShouldBe(0);
-        }
-
+      
 
         [Fact]
         public async Task Given_Top_Equals_1_Typeahead_Returns_1_Result()

@@ -1,4 +1,5 @@
 ﻿using GetAddress.Sdk.Services;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,6 +34,16 @@ namespace GetAddress.Sdk
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await usageService.Get(accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<Usage>> Usage(DateTimeOffset datetime, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await usageService.Get(datetime, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<Usage[]>> Usage(DateTimeOffset from, DateTimeOffset to, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await usageService.Get(from,to, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
         public InvoiceEmailRecipientService InvoiceEmailRecipient

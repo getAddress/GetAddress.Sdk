@@ -1,9 +1,14 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace GetAddress.Sdk
 {
+
     public class Usage
     {
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
+
         [JsonProperty("usage_today")]
         public int UsageToday { get; set; }
 
