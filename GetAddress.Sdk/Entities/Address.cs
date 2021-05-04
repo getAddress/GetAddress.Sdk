@@ -2,6 +2,7 @@
 
 namespace GetAddress.Sdk
 {
+
     public class Address
     {
         [JsonProperty("formatted_address")]

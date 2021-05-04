@@ -5,6 +5,19 @@ using Xunit;
 
 namespace GetAddress.Sdk.Tests
 {
+    public class UsageTests
+    {
+        [Fact]
+        public async Task Usage_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Usage();
+
+            result.IsSuccess.ShouldBeTrue();
+        }
+    }
+
     public class AutocompleteTests
     {
         [Fact]

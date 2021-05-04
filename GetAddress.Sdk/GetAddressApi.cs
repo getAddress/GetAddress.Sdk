@@ -12,6 +12,8 @@ namespace GetAddress.Sdk
         private readonly AutocompleteService autocompleteService;
         private readonly GetService getService;
         private readonly TypeaheadService typeaheadService;
+        private readonly UsageService usageService;
+
         public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
             
@@ -25,7 +27,14 @@ namespace GetAddress.Sdk
             getService = new GetService(apiKey, httpClient: httpClient);
             typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
             InvoiceEmailRecipient = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
+            usageService = new UsageService(administrationKey, httpClient: httpClient);
         }
+
+        public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await usageService.Get(accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
         public InvoiceEmailRecipientService InvoiceEmailRecipient
         {
             get;
