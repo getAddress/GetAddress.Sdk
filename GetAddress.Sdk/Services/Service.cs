@@ -49,6 +49,14 @@ namespace GetAddress.Sdk.Services
             return await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
         }
 
+        protected async Task<HttpResponseMessage> HttpPut(Uri requestUri, HttpContent httpContent = null, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default)
+        {
+            SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
+
+            return await HttpClient.PutAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+        }
+
         protected async Task<HttpResponseMessage> HttpDelete(Uri requestUri, string administrationOrApiKey = null,
             Token token = null, CancellationToken cancellationToken = default)
         {
