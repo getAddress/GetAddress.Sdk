@@ -31,6 +31,7 @@ namespace GetAddress.Sdk
             InvoiceEmailRecipient = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
             usageService = new UsageService(administrationKey, httpClient: httpClient);
             distanceService = new DistanceService(apiKey, httpClient: httpClient);
+            ExpiredEmailRecipient = new ExpiredEmailRecipientService(administrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -53,6 +54,11 @@ namespace GetAddress.Sdk
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public ExpiredEmailRecipientService ExpiredEmailRecipient
+        {
+            get;
         }
 
         public InvoiceEmailRecipientService InvoiceEmailRecipient

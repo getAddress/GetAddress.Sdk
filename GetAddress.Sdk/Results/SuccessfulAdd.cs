@@ -15,4 +15,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulExpiredEmailRecipientAdd : SuccessfulAdd
+    {
+
+    }
 }

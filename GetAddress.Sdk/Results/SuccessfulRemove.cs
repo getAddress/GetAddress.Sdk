@@ -12,4 +12,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulExpiredEmailRecipientRemove : SuccessfulRemove
+    {
+
+    }
 }
