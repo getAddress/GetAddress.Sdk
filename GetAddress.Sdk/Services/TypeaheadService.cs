@@ -22,7 +22,8 @@ namespace GetAddress.Sdk.Services
 
             var content = options.ToHttpContent();
 
-            var response = await HttpPost(requestUri,httpContent: content, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
+            var response = await HttpPost(requestUri,httpContent: content, administrationOrApiKey: ApiKey, 
+                token: accessToken, cancellationToken: cancellationToken);
 
             return await response.ToResult<string[]>();
         }
