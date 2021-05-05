@@ -27,4 +27,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulPaymentFailedReachedEmailRecipientRemove : SuccessfulRemove
+    {
+
+    }
 }

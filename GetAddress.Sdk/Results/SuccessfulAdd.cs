@@ -30,4 +30,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulPaymentFailedReachedEmailRecipientAdd : SuccessfulAdd
+    {
+
+    }
 }
