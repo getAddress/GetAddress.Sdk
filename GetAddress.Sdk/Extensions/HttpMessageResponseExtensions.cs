@@ -6,7 +6,7 @@ namespace GetAddress.Sdk
 {
     internal static class HttpMessageResponseExtensions
     {
-        public static async Task<Result<S>> ToResult<S>(this HttpResponseMessage response)
+        public static async Task<Result<S>> ToResult<S>(this HttpResponseMessage response) where S: class
         {
             var json = await response.Content.ReadAsStringAsync();
 

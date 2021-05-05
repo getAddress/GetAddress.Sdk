@@ -32,7 +32,14 @@ namespace GetAddress.Sdk.Services
             var response = await HttpPut(requestUri,httpContent: content, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulEmailUpdate>();
+            var result = await response.ToResult<SuccessfulEmailUpdate>();
+
+            if(result.IsSuccess && result.Success == null)
+            {
+                result.Success = new SuccessfulEmailUpdate();
+            }
+
+            return result;
         }
     }
 }
