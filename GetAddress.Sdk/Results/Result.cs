@@ -39,7 +39,7 @@ namespace GetAddress.Sdk
         }
         public Result(Failed failed, string json, HttpStatusCode statusCode) : this(json,statusCode)
         {
-            Failed = failed ?? throw new System.ArgumentNullException(nameof(failed));
+            Failed = failed;
             IsSuccess = false;
         }
     }

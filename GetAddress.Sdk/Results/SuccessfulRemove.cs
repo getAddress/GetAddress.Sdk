@@ -32,4 +32,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulDomainWhitelistRemove : SuccessfulRemove
+    {
+
+    }
 }
