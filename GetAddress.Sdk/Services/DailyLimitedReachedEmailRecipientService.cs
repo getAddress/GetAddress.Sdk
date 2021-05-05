@@ -6,7 +6,7 @@ namespace GetAddress.Sdk.Services
 {
     public class DailyLimitedReachedEmailRecipientService: AdministrationService
     {
-        private const string path = "email-notification/monthly-limit-reached/";
+        private const string path = "email-notification/daily-limit-reached/";
 
         public DailyLimitedReachedEmailRecipientService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
         {

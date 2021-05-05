@@ -19,11 +19,17 @@ namespace GetAddress.Sdk.Services
             get;
         }
 
+        public MonthlyReserveReachedEmailRecipientService MonthlyReserveReached
+        {
+            get;
+        }
+
         public EmailNotifications(string administrationKey, HttpClient httpClient = null)
         {
             Expired = new  ExpiredEmailRecipientService(administrationKey, httpClient: httpClient);
             Invoice = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
             DailyLimitedReached = new DailyLimitedReachedEmailRecipientService(administrationKey, httpClient: httpClient);
+            MonthlyReserveReached = new MonthlyReserveReachedEmailRecipientService(administrationKey, httpClient: httpClient);
         }
     }
 }
