@@ -28,10 +28,9 @@ namespace GetAddress.Sdk
             autocompleteService = new AutocompleteService(apiKey, httpClient: httpClient);
             getService = new GetService(apiKey, httpClient: httpClient);
             typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
-            InvoiceEmailRecipient = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
+            EmailNotifications = new EmailNotifications(administrationKey, httpClient: httpClient);
             usageService = new UsageService(administrationKey, httpClient: httpClient);
             distanceService = new DistanceService(apiKey, httpClient: httpClient);
-            ExpiredEmailRecipient = new ExpiredEmailRecipientService(administrationKey, httpClient: httpClient);
             Email = new EmailService(administrationKey, httpClient: httpClient);
         }
 
@@ -62,16 +61,12 @@ namespace GetAddress.Sdk
             get;
         }
 
-        public ExpiredEmailRecipientService ExpiredEmailRecipient
+        public EmailNotifications EmailNotifications
         {
             get;
         }
 
-        public InvoiceEmailRecipientService InvoiceEmailRecipient
-        {
-            get;
-        }
-
+       
         public Security Security
         {
             get;
