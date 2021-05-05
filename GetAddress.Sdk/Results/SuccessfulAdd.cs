@@ -20,4 +20,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulDailyLimitReachedEmailRecipientAdd : SuccessfulAdd
+    {
+
+    }
 }

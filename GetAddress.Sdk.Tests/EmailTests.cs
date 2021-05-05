@@ -17,11 +17,11 @@ namespace GetAddress.Sdk.Tests
 
             var newEmailAddress = $"{System.Guid.NewGuid()}@getaddress.io";
 
-            var updateResult = await api.Email.Update(new UpdateEmailRequest { NewEmailAddress = newEmailAddress });
+            var updateResult = await api.Email.Update(new UpdateEmail{ NewEmailAddress = newEmailAddress });
 
             updateResult.IsSuccess.ShouldBeTrue();
 
-            var updateResult2 = await api.Email.Update(new UpdateEmailRequest { NewEmailAddress = result.Success.EmailAddress });
+            var updateResult2 = await api.Email.Update(new UpdateEmail { NewEmailAddress = result.Success.EmailAddress });
 
             updateResult2.IsSuccess.ShouldBeTrue();
         }

@@ -2,8 +2,7 @@
 
 namespace GetAddress.Sdk
 {
-
-    public class AddExpiredEmailRecipientRequest
+    public class AddExpiredEmailRecipient
     {
         [JsonProperty("email-address")]
         public string EmailAddress { get; set; }

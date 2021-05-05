@@ -2,18 +2,12 @@
 
 namespace GetAddress.Sdk
 {
-    public abstract class EmailRecipient
+    public class SuccessfulDailyLimitReachedEmailRecipient
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("email-address")]
         public string EmailAddress { get; set; }
     }
-
-    public class InvoiceEmailRecipient : EmailRecipient
-    {
-
-    }
-
 }

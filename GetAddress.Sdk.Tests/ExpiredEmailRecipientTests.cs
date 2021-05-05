@@ -11,7 +11,7 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var request = new AddExpiredEmailRecipientRequest
+            var request = new AddExpiredEmailRecipient
             {
                 EmailAddress = $"{System.Guid.NewGuid()}@getaddress.io"
             };
@@ -40,7 +40,7 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var request = new AddExpiredEmailRecipientRequest
+            var request = new AddExpiredEmailRecipient
             {
                 EmailAddress = $"{System.Guid.NewGuid()}@getaddress.io"
             };
