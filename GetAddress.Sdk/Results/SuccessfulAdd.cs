@@ -35,4 +35,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulDomainWhitelistAdd : SuccessfulAdd
+    {
+
+    }
 }

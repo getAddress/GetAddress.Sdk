@@ -19,6 +19,8 @@ namespace GetAddress.Sdk
 
             var failed = JsonConvert.DeserializeObject<Failed>(json);
 
+            failed = failed ?? new Failed();
+
             return new Result<S>(failed, json, response.StatusCode);
         }
     }

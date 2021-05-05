@@ -7,4 +7,5 @@ namespace GetAddress.Sdk
         [JsonProperty("api-key")]
         public string ApiKey { get; set; }
     }
+
 }

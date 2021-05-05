@@ -16,10 +16,16 @@ namespace GetAddress.Sdk.Services
             get;
         }
 
+        public DomainWhitelistService DomainWhitelist
+        {
+            get;
+        }
+
         public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
         {
             Token = new AuthService(apiKey, administrationKey, httpClient: httpClient);
             ApiKey = new ApiKeyService(administrationKey, httpClient: httpClient);
+            DomainWhitelist = new DomainWhitelistService(administrationKey, httpClient: httpClient);
         }
     }
 
