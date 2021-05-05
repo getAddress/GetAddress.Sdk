@@ -22,4 +22,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulMonthlyReserveReachedEmailRecipientRemove : SuccessfulRemove
+    {
+
+    }
 }

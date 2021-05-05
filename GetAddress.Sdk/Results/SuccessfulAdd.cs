@@ -25,4 +25,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulMonthlyReserveReachedEmailRecipientAdd : SuccessfulAdd
+    {
+
+    }
 }
