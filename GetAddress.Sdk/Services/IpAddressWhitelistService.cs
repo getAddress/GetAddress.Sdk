@@ -4,25 +4,25 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class DomainWhitelistService : AdministrationService
+    public class IpAddressWhitelistService : AdministrationService
     {
-        private const string path = "security/domain-whitelist";
-        public DomainWhitelistService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        private const string path = "security/ip-address-whitelist";
+        public IpAddressWhitelistService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
         {
 
         }
 
-        public async Task<Result<SuccessfulDomainWhitelist[]>> Get(AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulIpAddressWhitelist[]>> Get(AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDomainWhitelist[]>();
+            return await response.ToResult<SuccessfulIpAddressWhitelist[]>();
         }
 
-        public async Task<Result<SuccessfulDomainWhitelist>> Get(string id,AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulIpAddressWhitelist>> Get(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var pathAndId = $"{path}/{id}";
 
@@ -31,12 +31,12 @@ namespace GetAddress.Sdk.Services
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDomainWhitelist>();
+            return await response.ToResult<SuccessfulIpAddressWhitelist>();
         }
 
-        public async Task<Result<SuccessfulDomainWhitelistAdd>> Add(AddDomainName request,
-            AccessToken accessToken = default,
-            CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulIpAddressWhitelistAdd>> Add(AddIpAddress request,
+           AccessToken accessToken = default,
+           CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
@@ -45,10 +45,10 @@ namespace GetAddress.Sdk.Services
             var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDomainWhitelistAdd>();
+            return await response.ToResult<SuccessfulIpAddressWhitelistAdd>();
         }
 
-        public async Task<Result<SuccessfulDomainWhitelistRemove>> Remove(string id,
+        public async Task<Result<SuccessfulIpAddressWhitelistRemove>> Remove(string id,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -59,8 +59,7 @@ namespace GetAddress.Sdk.Services
             var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDomainWhitelistRemove>();
+            return await response.ToResult<SuccessfulIpAddressWhitelistRemove>();
         }
-
     }
 }

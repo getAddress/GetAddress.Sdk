@@ -37,4 +37,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulIpAddressWhitelistRemove : SuccessfulRemove
+    {
+
+    }
 }
