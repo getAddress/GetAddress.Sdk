@@ -7,4 +7,5 @@ namespace GetAddress.Sdk
         [JsonProperty("new-email-address")]
         public string NewEmailAddress { get; set; }
     }
+
 }

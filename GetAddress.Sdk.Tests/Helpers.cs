@@ -38,6 +38,20 @@ namespace GetAddress.Sdk.Tests
 
                 return api;
             }
+
+            public static GetAddressApi GetApiWithUpdatableKeys()
+            {
+                var adminKey = Helpers.KeyHelper.GetUpdatableAdminKey();
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
+
+                var api = new GetAddressApi("", adminKey, httpClient: httpClient);
+
+                return api;
+            }
         }
         public static class UrlHelper
         {
@@ -58,6 +72,15 @@ namespace GetAddress.Sdk.Tests
             public static string GetAdminKey()
             {
                 var adminKey = Environment.GetEnvironmentVariable("getaddress_adminkey", EnvironmentVariableTarget.User);
+
+                if (string.IsNullOrWhiteSpace(adminKey)) throw new Exception("Add your admin key to your Environmental Variables");
+
+                return adminKey;
+            }
+
+            public static string GetUpdatableAdminKey()
+            {
+                var adminKey = Environment.GetEnvironmentVariable("getaddress_updatable_adminkey", EnvironmentVariableTarget.User);
 
                 if (string.IsNullOrWhiteSpace(adminKey)) throw new Exception("Add your admin key to your Environmental Variables");
 

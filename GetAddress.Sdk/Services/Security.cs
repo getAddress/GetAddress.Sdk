@@ -1,28 +1,25 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Specialized;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace GetAddress.Sdk.Services
 {
     public class Security
     {
-        private readonly AuthService authService;
+        public ApiKeyService ApiKey
+        {
+            get;
+        }
 
         public AuthService Token
         {
-            get
-            {
-                return authService;
-            }
+            get;
         }
 
         public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
         {
-            authService = new AuthService(apiKey, administrationKey, httpClient);
+            Token = new AuthService(apiKey, administrationKey, httpClient: httpClient);
+            ApiKey = new ApiKeyService(administrationKey, httpClient: httpClient);
         }
     }
 
