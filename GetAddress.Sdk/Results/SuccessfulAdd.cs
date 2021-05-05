@@ -40,4 +40,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulIpAddressWhitelistAdd : SuccessfulAdd
+    {
+
+    }
 }
