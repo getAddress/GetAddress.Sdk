@@ -39,7 +39,7 @@ namespace GetAddress.Sdk.Services
             return await response.ToResult<SuccessfulExpiredEmailRecipient[]>();
         }
 
-        public async Task<Result<SuccessfulExpiredEmailRecipientAdd>> Add(AddExpiredEmailRecipientRequest request,
+        public async Task<Result<SuccessfulExpiredEmailRecipientAdd>> Add(AddExpiredEmailRecipient request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {

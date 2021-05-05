@@ -2,7 +2,7 @@
 
 namespace GetAddress.Sdk
 {
-    public class UpdateEmailRequest
+    public class UpdateEmail
     {
         [JsonProperty("new-email-address")]
         public string NewEmailAddress { get; set; }

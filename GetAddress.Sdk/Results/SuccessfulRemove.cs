@@ -17,4 +17,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class SuccessfulDailyLimitReachedEmailRecipientRemove : SuccessfulRemove
+    {
+
+    }
 }

@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-    public class InvoiceEmailRecipientService : AdministrationService
+    public class DailyLimitedReachedEmailRecipientService: AdministrationService
     {
-        private const string path = "cc/invoices";
+        private const string path = "email-notification/monthly-limit-reached/";
 
-        public InvoiceEmailRecipientService(string administrationKey, HttpClient httpClient = null) :base(administrationKey, httpClient)
+        public DailyLimitedReachedEmailRecipientService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
         {
 
         }
 
-        public async Task<Result<SuccessfulInvoiceEmailRecipient>> Get(string id,
+        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipient>> Get(string id,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -24,23 +24,22 @@ namespace GetAddress.Sdk.Services
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulInvoiceEmailRecipient>();
+            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient>();
         }
 
-        public async Task<Result<SuccessfulInvoiceEmailRecipient[]>> Get(
+        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipient[]>> Get(
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
-
             var requestUri = GetUri(path);
 
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulInvoiceEmailRecipient[]>();
+            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient[]>();
         }
 
-        public async Task<Result<SuccessfulInvoiceEmailRecipientAdd>> Add(AddInvoiceEmailRecipient request,
+        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipientAdd>> Add(AddDailyLimitReachedEmailRecipient request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -51,12 +50,12 @@ namespace GetAddress.Sdk.Services
             var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulInvoiceEmailRecipientAdd>();
+            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipientAdd>();
         }
 
-        public async Task<Result<SuccessfulInvoiceEmailRecipientRemove>> Remove(string id, 
-            AccessToken accessToken = default,
-            CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipientRemove>> Remove(string id,
+          AccessToken accessToken = default,
+          CancellationToken cancellationToken = default)
         {
             var removePath = path + $"/{id}";
 
@@ -65,8 +64,7 @@ namespace GetAddress.Sdk.Services
             var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulInvoiceEmailRecipientRemove>();
+            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipientRemove>();
         }
-
     }
 }

@@ -22,7 +22,7 @@ namespace GetAddress.Sdk.Services
             return await response.ToResult<SuccessfulEmail>();
         }
 
-        public async Task<Result<SuccessfulEmailUpdate>> Update(UpdateEmailRequest request,
+        public async Task<Result<SuccessfulEmailUpdate>> Update(UpdateEmail request,
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
