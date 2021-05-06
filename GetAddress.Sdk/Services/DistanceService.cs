@@ -11,7 +11,7 @@ namespace GetAddress.Sdk.Services
 
         }
 
-        public async Task<Result<SuccessfulDistance>> Distance(
+        public async Task<Result<Distance>> Distance(
             string postcodeFrom,
             string postcodeTo,
             AccessToken accessToken = default, 
@@ -24,7 +24,7 @@ namespace GetAddress.Sdk.Services
             var response = await HttpGet(requestUri, administrationOrApiKey: ApiKey,
                token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDistance>();
+            return await response.ToResult<Distance>();
         }
 
         private string GetPath(string postcodeFrom, string postcodeTo)

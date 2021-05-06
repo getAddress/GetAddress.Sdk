@@ -2,7 +2,7 @@
 
 namespace GetAddress.Sdk
 {
-    public class SuccessfulDistance
+    public class Distance
     {
         [JsonProperty("from")]
         public Point From { get; set; } = new Point();
