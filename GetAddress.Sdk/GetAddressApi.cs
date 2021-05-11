@@ -34,6 +34,7 @@ namespace GetAddress.Sdk
             Email = new EmailService(administrationKey, httpClient: httpClient);
             Subscription = new SubscriptionService(administrationKey, httpClient: httpClient);
             Plans = new PlansService(administrationKey, httpClient: httpClient);
+            BillingAddress = new BillingAddressService(administrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -56,6 +57,11 @@ namespace GetAddress.Sdk
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public BillingAddressService BillingAddress
+        {
+            get;
         }
 
         public PlansService Plans

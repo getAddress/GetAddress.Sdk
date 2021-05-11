@@ -2,7 +2,7 @@
 
 namespace GetAddress.Sdk
 {
-    public class UpdateSubscriptionRequest
+    public class UpdateSubscription
     {
         [JsonProperty("name")]
         public string Name
