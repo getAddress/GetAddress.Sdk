@@ -33,6 +33,11 @@ namespace GetAddress.Sdk
 
     }
 
+    public class SuccessfulExpiredWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulDailyLimitReachedEmailRecipientRemove : SuccessfulRemove
     {
 

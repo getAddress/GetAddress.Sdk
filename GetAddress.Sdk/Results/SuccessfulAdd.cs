@@ -26,6 +26,11 @@ namespace GetAddress.Sdk
 
     }
 
+    public class SuccessfulExpiredWebhookAdd : SuccessfulAdd
+    {
+
+    }
+
     public class SuccessfulInvoiceEmailRecipientAdd: SuccessfulAdd
     {
 

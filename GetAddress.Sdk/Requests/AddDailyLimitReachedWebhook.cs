@@ -7,6 +7,11 @@ namespace GetAddress.Sdk
         [JsonProperty("url")]
         public string Url { get; set; }
     }
+    public class AddExpiredWebhook : AddWebhook
+    {
+
+    }
+
     public class AddDailyLimitReachedWebhook: AddWebhook
     {
 

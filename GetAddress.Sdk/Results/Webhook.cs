@@ -15,6 +15,12 @@ namespace GetAddress.Sdk
 
     }
 
+    public class Expired : Webhook
+    {
+
+    }
+
+
     public class MonthlyReserveReached : Webhook
     {
 
