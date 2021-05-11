@@ -18,6 +18,11 @@ namespace GetAddress.Sdk
 
     }
 
+    public class SuccessfulPaymentFailedWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulMonthlyReserveReachedWebhookRemove : SuccessfulRemove
     {
 

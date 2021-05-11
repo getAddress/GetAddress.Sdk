@@ -11,6 +11,11 @@ namespace GetAddress.Sdk
         public string Id{ get; set; }
     }
 
+    public class SuccessfulPaymentFailedWebhookAdd : SuccessfulAdd
+    {
+
+    }
+
     public class SuccessfulMonthlyReserveReachedWebhookAdd : SuccessfulAdd
     {
 

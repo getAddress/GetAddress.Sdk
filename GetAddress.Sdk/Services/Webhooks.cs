@@ -14,10 +14,16 @@ namespace GetAddress.Sdk.Services
             get;
         }
 
+        public PaymentFailedWebhookService PaymentFailed
+        {
+            get;
+        }
+
         public Webhooks(string administrationKey, HttpClient httpClient = null)
         {
             DailyLimitReached = new DailyLimitedReachedWebhookService(administrationKey, httpClient: httpClient);
             MonthlyReserveReached = new MonthlyReserveReachedWebhookService(administrationKey, httpClient: httpClient);
+            PaymentFailed = new PaymentFailedWebhookService(administrationKey, httpClient: httpClient);
         }
     }
 }

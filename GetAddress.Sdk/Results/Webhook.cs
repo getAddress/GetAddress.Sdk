@@ -19,4 +19,9 @@ namespace GetAddress.Sdk
     {
 
     }
+
+    public class PaymentFailed : Webhook
+    {
+
+    }
 }
