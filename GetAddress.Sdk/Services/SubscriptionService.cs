@@ -40,7 +40,7 @@ namespace GetAddress.Sdk.Services
             return result;
         }
 
-        public async Task<Result<SuccessfulChangePlan>> ChangePlan(ChangePlanRequest request, AccessToken accessToken = default, 
+        public async Task<Result<SuccessfulChangePlan>> ChangePlan(ChangePlan request, AccessToken accessToken = default, 
             CancellationToken cancellationToken = default)
         {
             var nameValues = new NameValueCollection();
@@ -61,7 +61,7 @@ namespace GetAddress.Sdk.Services
             return result;
         }
 
-        public async Task<Result<SuccessfulSubscriptionUpdate>> Update(UpdateSubscriptionRequest request, AccessToken accessToken = default,
+        public async Task<Result<SuccessfulSubscriptionUpdate>> Update(UpdateSubscription request, AccessToken accessToken = default,
            CancellationToken cancellationToken = default)
         {
             var nameValues = new NameValueCollection();
@@ -80,7 +80,7 @@ namespace GetAddress.Sdk.Services
             return result;
         }
 
-        public async Task<Result<SuccessfulCreateSubscription>> Create(CreateSubscriptionRequest request, AccessToken accessToken = default,
+        public async Task<Result<SuccessfulCreateSubscription>> Create(CreateSubscription request, AccessToken accessToken = default,
           CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);

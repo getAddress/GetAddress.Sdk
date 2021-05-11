@@ -2,7 +2,7 @@
 
 namespace GetAddress.Sdk
 {
-    public class ChangePlanRequest
+    public class CreateSubscription
     {
         [JsonProperty("plan_name")]
         public string PlanName
