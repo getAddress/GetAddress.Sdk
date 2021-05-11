@@ -2,6 +2,7 @@
 
 namespace GetAddress.Sdk.Services
 {
+
     public class EmailNotifications
     {
         public PaymentFailedEmailRecipientService PaymentFailed
@@ -19,7 +20,7 @@ namespace GetAddress.Sdk.Services
             get;
         }
 
-        public DailyLimitedReachedEmailRecipientService DailyLimitedReached
+        public DailyLimitReachedEmailRecipientService DailyLimitReached
         {
             get;
         }
@@ -33,7 +34,7 @@ namespace GetAddress.Sdk.Services
         {
             Expired = new  ExpiredEmailRecipientService(administrationKey, httpClient: httpClient);
             Invoice = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);
-            DailyLimitedReached = new DailyLimitedReachedEmailRecipientService(administrationKey, httpClient: httpClient);
+            DailyLimitReached = new DailyLimitReachedEmailRecipientService(administrationKey, httpClient: httpClient);
             MonthlyReserveReached = new MonthlyReserveReachedEmailRecipientService(administrationKey, httpClient: httpClient);
             PaymentFailed = new PaymentFailedEmailRecipientService(administrationKey, httpClient: httpClient);
         }

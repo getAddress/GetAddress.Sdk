@@ -4,19 +4,18 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Sdk.Services
 {
-
-    public class DailyLimitReachedEmailRecipientService: AdministrationService
+    public class DailyLimitedReachedWebhookService : AdministrationService
     {
-        private const string path = "email-notification/daily-limit-reached/";
+        private const string path = "webhook/first-limit-reached";
 
-        public DailyLimitReachedEmailRecipientService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public DailyLimitedReachedWebhookService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
         {
 
         }
 
-        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipient>> Get(string id,
-            AccessToken accessToken = default,
-            CancellationToken cancellationToken = default)
+        public async Task<Result<DailyLimitReached>> Get(string id,
+           AccessToken accessToken = default,
+           CancellationToken cancellationToken = default)
         {
             var removePath = path + $"/{id}";
 
@@ -25,10 +24,10 @@ namespace GetAddress.Sdk.Services
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient>();
+            return await response.ToResult<DailyLimitReached>();
         }
 
-        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipient[]>> Get(
+        public async Task<Result<DailyLimitReached[]>> Get(
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -37,10 +36,10 @@ namespace GetAddress.Sdk.Services
             var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient[]>();
+            return await response.ToResult<DailyLimitReached[]>();
         }
 
-        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipientAdd>> Add(AddDailyLimitReachedEmailRecipient request,
+        public async Task<Result<SuccessfulDailyLimitReachedWebhookAdd>> Add(AddDailyLimitReachedWebhook request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -51,10 +50,10 @@ namespace GetAddress.Sdk.Services
             var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipientAdd>();
+            return await response.ToResult<SuccessfulDailyLimitReachedWebhookAdd>();
         }
 
-        public async Task<Result<SuccessfulDailyLimitReachedEmailRecipientRemove>> Remove(string id,
+        public async Task<Result<SuccessfulDailyLimitReachedWebhookRemove>> Remove(string id,
           AccessToken accessToken = default,
           CancellationToken cancellationToken = default)
         {
@@ -65,7 +64,8 @@ namespace GetAddress.Sdk.Services
             var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipientRemove>();
+            return await response.ToResult<SuccessfulDailyLimitReachedWebhookRemove>();
         }
+
     }
 }

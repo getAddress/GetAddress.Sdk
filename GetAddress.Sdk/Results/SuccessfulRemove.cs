@@ -18,6 +18,11 @@ namespace GetAddress.Sdk
 
     }
 
+    public class SuccessfulDailyLimitReachedWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulDailyLimitReachedEmailRecipientRemove : SuccessfulRemove
     {
 
