@@ -11,5 +11,8 @@ namespace GetAddress.Sdk
     {
 
     }
+    public class AddMonthlyReserveReachedWebhook : AddWebhook
+    {
 
+    }
 }
