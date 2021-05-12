@@ -31,11 +31,10 @@ namespace GetAddress
             EmailNotifications = new EmailNotifications(administrationKey, httpClient: httpClient);
             usageService = new UsageService(administrationKey, httpClient: httpClient);
             distanceService = new DistanceService(apiKey, httpClient: httpClient);
-            Email = new EmailService(administrationKey, httpClient: httpClient);
             Subscription = new SubscriptionService(administrationKey, httpClient: httpClient);
             Plans = new PlansService(administrationKey, httpClient: httpClient);
-            BillingAddress = new BillingAddressService(administrationKey, httpClient: httpClient);
             Webhooks = new Webhooks(administrationKey, httpClient: httpClient);
+            Account = new Account(administrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -65,17 +64,12 @@ namespace GetAddress
             get;
         }
 
-        public BillingAddressService BillingAddress
-        {
-            get;
-        }
-
         public PlansService Plans
         {
             get;
         }
 
-        public EmailService Email
+        public Account Account
         {
             get;
         }

@@ -11,17 +11,17 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var result = await api.Email.Get();
+            var result = await api.Account.EmailAddress.Get();
 
             result.IsSuccess.ShouldBeTrue();
 
             var newEmailAddress = $"{System.Guid.NewGuid()}@getaddress.io";
 
-            var updateResult = await api.Email.Update(new UpdateEmail{ NewEmailAddress = newEmailAddress });
+            var updateResult = await api.Account.EmailAddress.Update(new UpdateEmail{ NewEmailAddress = newEmailAddress });
 
             updateResult.IsSuccess.ShouldBeTrue();
 
-            var updateResult2 = await api.Email.Update(new UpdateEmail { NewEmailAddress = result.Success.EmailAddress });
+            var updateResult2 = await api.Account.EmailAddress.Update(new UpdateEmail { NewEmailAddress = result.Success.EmailAddress });
 
             updateResult2.IsSuccess.ShouldBeTrue();
         }

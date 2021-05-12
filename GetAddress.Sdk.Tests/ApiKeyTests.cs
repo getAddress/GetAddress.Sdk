@@ -5,19 +5,6 @@ using Xunit;
 
 namespace GetAddress.Tests
 {
-    public class BillingAddressTests
-    {
-        [Fact]
-        public async Task Get_Returns_Successful_Result()
-        {
-            var api = Helpers.ApiHelper.GetApi();
-
-            var result = await api.BillingAddress.Get();
-
-            result.IsSuccess.ShouldBeTrue();
-        }
-
-    }
 
     public class ApiKeyTests
     {
