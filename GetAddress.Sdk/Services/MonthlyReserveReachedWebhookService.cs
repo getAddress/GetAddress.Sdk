@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
     public class MonthlyReserveReachedWebhookService : AdministrationService
     {
@@ -66,6 +66,21 @@ namespace GetAddress.Sdk.Services
 
             return await response.ToResult<SuccessfulMonthlyReserveReachedWebhookRemove>();
         }
+
+        public async Task<Result<SuccessfulMonthlyReserveReachedWebhookTest>> Test(
+            AccessToken accessToken = default,
+            CancellationToken cancellationToken = default)
+        {
+            var fullPath = $"{path}/test";
+
+            var requestUri = GetUri(fullPath);
+
+            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+                token: accessToken, cancellationToken: cancellationToken);
+
+            return await response.ToResult<SuccessfulMonthlyReserveReachedWebhookTest>();
+        }
+
 
     }
 }

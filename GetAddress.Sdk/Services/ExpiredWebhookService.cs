@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
     public class ExpiredWebhookService : AdministrationService
     {
@@ -65,6 +65,20 @@ namespace GetAddress.Sdk.Services
                 token: accessToken, cancellationToken: cancellationToken);
 
             return await response.ToResult<SuccessfulExpiredWebhookRemove>();
+        }
+
+        public async Task<Result<SuccessfulExpiredWebhookTest>> Test(
+           AccessToken accessToken = default,
+           CancellationToken cancellationToken = default)
+        {
+            var fullPath = $"{path}/test";
+
+            var requestUri = GetUri(fullPath);
+
+            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+                token: accessToken, cancellationToken: cancellationToken);
+
+            return await response.ToResult<SuccessfulExpiredWebhookTest>();
         }
 
     }

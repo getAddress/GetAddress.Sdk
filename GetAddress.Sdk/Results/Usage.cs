@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
 
     public class Usage

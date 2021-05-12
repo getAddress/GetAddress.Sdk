@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
     public class FindService : AddressService
     {

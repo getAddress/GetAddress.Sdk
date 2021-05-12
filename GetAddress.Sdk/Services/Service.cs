@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
     public abstract class Service
     {

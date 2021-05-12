@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public class MonthlyReserveReachedRecipientTests
     {
@@ -45,7 +45,7 @@ namespace GetAddress.Sdk.Tests
                 EmailAddress = $"{System.Guid.NewGuid()}@getaddress.io"
             };
 
-            var tokenResult = await api.Security.Token.GetAdministrationTokens();
+            var tokenResult = await api.Security.Authentication.GetAdministrationTokens();
 
             tokenResult.IsSuccess.ShouldBeTrue();
 

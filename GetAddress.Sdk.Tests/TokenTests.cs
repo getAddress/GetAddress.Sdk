@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public class TokenTests
     {
@@ -11,7 +11,7 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var result = await api.Security.Token.GetAdministrationTokens();
+            var result = await api.Security.Authentication.GetAdministrationTokens();
 
             result.IsSuccess.ShouldBeTrue();
         }
@@ -22,13 +22,13 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var tokensResult = await api.Security.Token.GetAdministrationTokens();
+            var tokensResult = await api.Security.Authentication.GetAdministrationTokens();
 
             tokensResult.IsSuccess.ShouldBeTrue();
 
             var success = tokensResult.Success;
 
-            var result = await api.Security.Token.Refresh(success.Tokens.Refresh);
+            var result = await api.Security.Authentication.Refresh(success.Tokens.Refresh);
 
             result.IsSuccess.ShouldBeTrue();
         }
@@ -38,13 +38,13 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var tokensResult = await api.Security.Token.GetAdministrationTokens();
+            var tokensResult = await api.Security.Authentication.GetAdministrationTokens();
 
             tokensResult.IsSuccess.ShouldBeTrue();
 
             var success = tokensResult.Success;
 
-            var result = await api.Security.Token.Revoke();
+            var result = await api.Security.Authentication.Revoke();
 
             result.IsSuccess.ShouldBeTrue();
         }

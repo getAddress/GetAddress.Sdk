@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 using System;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public class ExpiredWebhookTests
     {

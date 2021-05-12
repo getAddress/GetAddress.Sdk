@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public class UsageTests
     {

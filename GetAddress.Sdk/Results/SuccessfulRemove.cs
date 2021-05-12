@@ -1,11 +1,16 @@
 ﻿using Newtonsoft.Json;
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     public class SuccessfulRemove
     {
         [JsonProperty("message")]
         public string Message { get; set; }
+    }
+
+    public class SuccessfulDailyLimitReachedWebhookTest : SuccessfulRemove
+    {
+
     }
 
     public class SuccessfulInvoiceEmailRecipientRemove: SuccessfulRemove
@@ -23,7 +28,17 @@ namespace GetAddress.Sdk
 
     }
 
+    public class SuccessfulPaymentFailedWebhookTest : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulMonthlyReserveReachedWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
+    public class SuccessfulMonthlyReserveReachedWebhookTest : SuccessfulRemove
     {
 
     }
@@ -34,6 +49,11 @@ namespace GetAddress.Sdk
     }
 
     public class SuccessfulExpiredWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
+    public class SuccessfulExpiredWebhookTest : SuccessfulRemove
     {
 
     }

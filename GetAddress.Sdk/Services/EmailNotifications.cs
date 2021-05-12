@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
 
     public class EmailNotifications

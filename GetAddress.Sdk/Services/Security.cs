@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk.Services
+namespace GetAddress.Services
 {
     public class Security
     {
@@ -11,7 +11,7 @@ namespace GetAddress.Sdk.Services
             get;
         }
 
-        public AuthService Token
+        public AuthService Authentication
         {
             get;
         }
@@ -28,7 +28,7 @@ namespace GetAddress.Sdk.Services
 
         public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
         {
-            Token = new AuthService(apiKey, administrationKey, httpClient: httpClient);
+            Authentication = new AuthService(apiKey, administrationKey, httpClient: httpClient);
             ApiKey = new ApiKeyService(administrationKey, httpClient: httpClient);
             DomainWhitelist = new DomainWhitelistService(administrationKey, httpClient: httpClient);
             IpAddressWhitelist = new IpAddressWhitelistService(administrationKey, httpClient: httpClient);

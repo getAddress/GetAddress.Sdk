@@ -2,7 +2,7 @@
 using System;
 
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     
     public class Tokens

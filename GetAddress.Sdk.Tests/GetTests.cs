@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public class GetTests
     {
@@ -26,7 +26,7 @@ namespace GetAddress.Sdk.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var authResult = await api.Security.Token.GetTokens();
+            var authResult = await api.Security.Authentication.GetTokens();
 
             authResult.IsSuccess.ShouldBeTrue();
 

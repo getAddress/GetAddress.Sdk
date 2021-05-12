@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     public  class Result<S>
     {

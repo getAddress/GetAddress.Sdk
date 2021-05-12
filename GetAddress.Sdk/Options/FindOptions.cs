@@ -1,6 +1,6 @@
 ﻿
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     public class FindOptions: Options
     {

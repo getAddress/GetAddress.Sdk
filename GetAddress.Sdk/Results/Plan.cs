@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     public class Plan
     {

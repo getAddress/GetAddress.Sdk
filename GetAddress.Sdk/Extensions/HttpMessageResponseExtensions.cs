@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
     internal static class HttpMessageResponseExtensions
     {

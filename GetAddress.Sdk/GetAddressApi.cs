@@ -1,12 +1,12 @@
-﻿using GetAddress.Sdk.Services;
+﻿using GetAddress.Services;
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetAddress.Sdk
+namespace GetAddress
 {
-    public class GetAddressApi
+    public class Api
     {
 
         private readonly FindService findService;
@@ -16,11 +16,11 @@ namespace GetAddress.Sdk
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
 
-        public GetAddressApi(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
+        public Api(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
             
         }
-        public GetAddressApi(string apiKey, string administrationKey, HttpClient httpClient = null)
+        public Api(string apiKey, string administrationKey, HttpClient httpClient = null)
         {
             httpClient = httpClient ?? new GetAddressHttpClient();
             Security = new Security(apiKey, administrationKey, httpClient: httpClient);

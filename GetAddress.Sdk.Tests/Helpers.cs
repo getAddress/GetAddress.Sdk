@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace GetAddress.Sdk.Tests
+namespace GetAddress.Tests
 {
     public static class Helpers
     {
 
         public static class ApiHelper
         {
-            public static GetAddressApi GetApi()
+            public static Api GetApi()
             {
                 var apiKey = Helpers.KeyHelper.GetApiKey();
 
@@ -21,12 +21,12 @@ namespace GetAddress.Sdk.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new GetAddressApi(apiKey, adminKey, httpClient: httpClient);
+                var api = new Api(apiKey, adminKey, httpClient: httpClient);
                 
                 return api;
             }
 
-            public static GetAddressApi GetApiNoKeys()
+            public static Api GetApiNoKeys()
             {
 
                 var testServerUri = Helpers.UrlHelper.GetTestServerUri();
@@ -34,12 +34,12 @@ namespace GetAddress.Sdk.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new GetAddressApi(httpClient: httpClient);
+                var api = new Api(httpClient: httpClient);
 
                 return api;
             }
 
-            public static GetAddressApi GetApiWithUpdatableKeys()
+            public static Api GetApiWithUpdatableKeys()
             {
                 var adminKey = Helpers.KeyHelper.GetUpdatableAdminKey();
 
@@ -48,7 +48,7 @@ namespace GetAddress.Sdk.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new GetAddressApi("", adminKey, httpClient: httpClient);
+                var api = new Api("", adminKey, httpClient: httpClient);
 
                 return api;
             }

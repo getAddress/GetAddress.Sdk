@@ -1,4 +1,4 @@
-﻿namespace GetAddress.Sdk
+﻿namespace GetAddress
 {
     public class SuccessfulAuthRevoke
     {
