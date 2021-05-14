@@ -14,10 +14,16 @@ namespace GetAddress.Services
             get;
         }
 
+        public PaymentCardService PaymentCard
+        {
+            get;
+        }
+
         public Account(string administrationKey, HttpClient httpClient = null)
         {
             BillingAddress = new BillingAddressService(administrationKey, httpClient: httpClient);
             EmailAddress = new EmailService(administrationKey, httpClient: httpClient);
+            PaymentCard = new PaymentCardService(administrationKey, httpClient: httpClient);
         }
     }
 }
