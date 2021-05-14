@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace GetAddress
+namespace System.Net.Http
 {
-   
     internal static class HttpClientExtensions
     {
         public  static HttpClient SetBaseAddress(this HttpClient client)

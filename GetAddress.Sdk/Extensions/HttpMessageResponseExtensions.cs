@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Net.Http;
+﻿using GetAddress;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace GetAddress
+namespace System.Net.Http
 {
     internal static class HttpMessageResponseExtensions
     {
