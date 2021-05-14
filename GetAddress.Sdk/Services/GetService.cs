@@ -14,9 +14,7 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(suggestion.Url);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulGet>();
+            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulGet>> Get(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)

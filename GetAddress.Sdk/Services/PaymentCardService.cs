@@ -16,10 +16,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulPaymentCard>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentCard>();
         }
 
         public async Task<Result<SuccessfulPaymentCardRemove>> Remove(string id,

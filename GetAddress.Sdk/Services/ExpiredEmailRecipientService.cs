@@ -21,10 +21,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulExpiredEmailRecipient>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredEmailRecipient>();
         }
 
         public async Task<Result<SuccessfulExpiredEmailRecipient[]>> Get(
@@ -33,10 +31,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulExpiredEmailRecipient[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredEmailRecipient[]>();
         }
 
         public async Task<Result<SuccessfulExpiredEmailRecipientAdd>> Add(AddExpiredEmailRecipient request,

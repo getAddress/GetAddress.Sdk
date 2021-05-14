@@ -18,10 +18,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(v2Path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<Subscription>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<Subscription>();
         }
 
         public async Task<Result<SuccessfulUnsubscribe>> Unsubscribe(AccessToken accessToken = default, CancellationToken cancellationToken = default)

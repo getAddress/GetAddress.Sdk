@@ -18,10 +18,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<Usage>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<Usage>();
         }
 
         public async Task<Result<Usage>> Get(DateTimeOffset date, AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -34,10 +32,9 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(usagePath);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<Usage>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<Usage>();
         }
 
         public async Task<Result<Usage[]>> Get(DateTimeOffset from, DateTimeOffset to, AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -54,10 +51,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(usagePath);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<Usage[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<Usage[]>();
         }
     }
 }

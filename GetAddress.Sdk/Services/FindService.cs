@@ -19,9 +19,7 @@ namespace GetAddress.Services
 
             var requestUri = GetFindUri(postcode, options);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey:ApiKey, token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulFind>();
+            return await HttpGet<SuccessfulFind>(requestUri, administrationOrApiKey:ApiKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
         private Uri GetFindUri(string postcode, FindOptions options)

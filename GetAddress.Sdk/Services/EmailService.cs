@@ -16,10 +16,9 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulEmail>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulEmail>();
         }
 
         public async Task<Result<SuccessfulEmailUpdate>> Update(UpdateEmail request,

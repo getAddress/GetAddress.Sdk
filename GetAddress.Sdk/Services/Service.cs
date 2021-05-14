@@ -33,13 +33,7 @@ namespace GetAddress.Services
 
         }
 
-        protected async Task<HttpResponseMessage> HttpGet(Uri requestUri, string administrationOrApiKey = null,
-            Token token = null, CancellationToken cancellationToken = default)
-        {
-            SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
-
-            return await HttpClient.GetAsync(requestUri, cancellationToken);
-        }
+        
 
         protected async Task<Result<S>> HttpGet<S>(Uri requestUri, string administrationOrApiKey = null,
             Token token = null, CancellationToken cancellationToken = default) where S :class

@@ -21,10 +21,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: ApiKey,
+            return await HttpGet<Distance>(requestUri, administrationOrApiKey: ApiKey,
                token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<Distance>();
         }
 
         private string GetPath(string postcodeFrom, string postcodeTo)

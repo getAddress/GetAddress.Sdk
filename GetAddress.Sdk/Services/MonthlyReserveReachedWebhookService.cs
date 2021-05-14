@@ -21,10 +21,9 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<MonthlyReserveReached>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<MonthlyReserveReached>();
         }
 
         public async Task<Result<MonthlyReserveReached[]>> Get(
@@ -33,10 +32,7 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
-                token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<MonthlyReserveReached[]>();
+            return await HttpGet<MonthlyReserveReached[]>(requestUri, administrationOrApiKey: AdministrationKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulMonthlyReserveReachedWebhookAdd>> Add(AddMonthlyReserveReachedWebhook request,

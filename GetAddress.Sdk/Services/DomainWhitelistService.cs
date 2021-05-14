@@ -16,10 +16,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return  await HttpGet<SuccessfulDomainWhitelist[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulDomainWhitelist[]>();
         }
 
         public async Task<Result<SuccessfulDomainWhitelist>> Get(string id,AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -28,10 +26,9 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(pathAndId);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulDomainWhitelist>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDomainWhitelist>();
         }
 
         public async Task<Result<SuccessfulDomainWhitelistAdd>> Add(AddDomainName request,

@@ -16,10 +16,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet< SuccessfulIpAddressWhitelist[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulIpAddressWhitelist[]>();
         }
 
         public async Task<Result<SuccessfulIpAddressWhitelist>> Get(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -28,10 +26,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(pathAndId);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
-                token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulIpAddressWhitelist>();
+            return await HttpGet<SuccessfulIpAddressWhitelist>(requestUri, administrationOrApiKey: AdministrationKey,  token: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulIpAddressWhitelistAdd>> Add(AddIpAddress request,

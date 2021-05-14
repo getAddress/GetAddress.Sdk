@@ -17,10 +17,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<BillingAddress>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<BillingAddress>();
         }
 
         public async Task<Result<SuccessfulBillingAddressUpdate>> Update(UpdateBillingAddress request, AccessToken accessToken = default, CancellationToken cancellationToken = default)

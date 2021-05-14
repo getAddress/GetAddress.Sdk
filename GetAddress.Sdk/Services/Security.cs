@@ -73,9 +73,7 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(Path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: administrationOrApiKey, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulAuth>();
+            return await HttpGet<SuccessfulAuth>(requestUri, administrationOrApiKey: administrationOrApiKey, cancellationToken: cancellationToken);
         }
 
         

@@ -15,7 +15,7 @@ namespace GetAddress
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
-
+        private readonly InvoiceService invoiceService;
         public Api(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
         {
             
@@ -35,6 +35,7 @@ namespace GetAddress
             Plans = new PlansService(administrationKey, httpClient: httpClient);
             Webhooks = new Webhooks(administrationKey, httpClient: httpClient);
             Account = new Account(administrationKey, httpClient: httpClient);
+            invoiceService = new InvoiceService(administrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -57,6 +58,21 @@ namespace GetAddress
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<Invoice[]>> Invoice(AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await invoiceService.Get(accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+        public async Task<Result<Invoice>> Invoice(string number,AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await invoiceService.Get(number, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public async Task<Result<Invoice[]>> Invoice(DateTimeOffset from, DateTimeOffset to,
+            AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await  invoiceService.Get(from, to, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
         public Webhooks Webhooks

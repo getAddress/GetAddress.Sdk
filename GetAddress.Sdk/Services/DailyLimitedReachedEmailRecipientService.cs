@@ -22,10 +22,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulDailyLimitReachedEmailRecipient>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient>();
         }
 
         public async Task<Result<SuccessfulDailyLimitReachedEmailRecipient[]>> Get(
@@ -34,10 +32,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpGet(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuccessfulDailyLimitReachedEmailRecipient[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulDailyLimitReachedEmailRecipient[]>();
         }
 
         public async Task<Result<SuccessfulDailyLimitReachedEmailRecipientAdd>> Add(AddDailyLimitReachedEmailRecipient request,
