@@ -8,6 +8,11 @@ namespace GetAddress
         public string Message { get; set; }
     }
 
+    public class SuccessfulPaymentCardRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulDailyLimitReachedWebhookTest : SuccessfulRemove
     {
 

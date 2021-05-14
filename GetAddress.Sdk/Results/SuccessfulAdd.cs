@@ -11,6 +11,11 @@ namespace GetAddress
         public string Id{ get; set; }
     }
 
+    public class SuccessfulPaymentCardAdd
+    {
+
+    }
+
     public class SuccessfulPaymentFailedWebhookAdd : SuccessfulAdd
     {
 

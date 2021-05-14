@@ -2,6 +2,7 @@
 
 namespace GetAddress
 {
+
     public class UpdateBillingAddress
     {
         [JsonProperty("line1")]

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Services
 {
-
     public class ApiKeyService : AdministrationService
     {
         private const string path = "security/api-key";
