@@ -11,6 +11,17 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
+            var listResult = await api.Security.IpAddressWhitelist.Get();
+
+            listResult.IsSuccess.ShouldBeTrue();
+
+            foreach (var ip in listResult.Success)
+            {
+                var remove = await api.Security.IpAddressWhitelist.Remove(ip.Id);
+
+                remove.IsSuccess.ShouldBeTrue();
+            }
+
             var request = new AddIpAddress
             {
                 IpAddress = "192.168.0.2"
@@ -23,10 +34,6 @@ namespace GetAddress.Tests
             var getResult = await api.Security.IpAddressWhitelist.Get(addResult.Success.Id);
 
             getResult.IsSuccess.ShouldBeTrue();
-
-            var listResult = await api.Security.IpAddressWhitelist.Get();
-
-            listResult.IsSuccess.ShouldBeTrue();
 
             var removeResult = await api.Security.IpAddressWhitelist.Remove(getResult.Success.Id);
 

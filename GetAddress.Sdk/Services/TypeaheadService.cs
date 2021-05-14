@@ -20,12 +20,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            var content = options.ToHttpContent();
-
-            var response = await HttpPost(requestUri,httpContent: content, administrationOrApiKey: ApiKey, 
+            return await HttpPost<string[]>(requestUri, data: options, administrationOrApiKey: ApiKey, 
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<string[]>();
         }
 
         private string GetPath(string term)

@@ -13,6 +13,17 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
+            var listResult = await api.Webhooks.DailyLimitReached.Get();
+
+            listResult.IsSuccess.ShouldBeTrue();
+
+            foreach(var webhook in listResult.Success)
+            {
+                var remove = await api.Webhooks.DailyLimitReached.Remove(webhook.Id);
+                
+                remove.IsSuccess.ShouldBeTrue();
+            }
+
             var request = new AddDailyLimitReachedWebhook
             {
                 Url = @$"https://getaddress.io?test={Guid.NewGuid()}"
@@ -25,12 +36,6 @@ namespace GetAddress.Tests
             var getResult = await api.Webhooks.DailyLimitReached.Get(addResult.Success.Id);
 
             getResult.IsSuccess.ShouldBeTrue();
-
-            var listResult = await api.Webhooks.DailyLimitReached.Get();
-
-            listResult.IsSuccess.ShouldBeTrue();
-
-            listResult.Success.Length.ShouldBeGreaterThan(1);
 
             var removeResult = await api.Webhooks.DailyLimitReached.Remove(getResult.Success.Id);
 

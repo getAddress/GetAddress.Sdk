@@ -45,12 +45,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulExpiredWebhookAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredWebhookAdd>();
         }
 
         public async Task<Result<SuccessfulExpiredWebhookRemove>> Remove(string id,
@@ -61,10 +57,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulExpiredWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredWebhookRemove>();
         }
 
         public async Task<Result<SuccessfulExpiredWebhookTest>> Test(
@@ -75,10 +69,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(fullPath);
 
-            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulExpiredWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredWebhookTest>();
         }
 
     }

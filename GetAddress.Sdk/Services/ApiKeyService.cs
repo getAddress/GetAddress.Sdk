@@ -26,12 +26,9 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var response = await HttpPut(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpPut<SuccessfulApiKeyUpdate>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            var result = await response.ToResult<SuccessfulApiKeyUpdate>();
-
-            return result;
         }
 
     }

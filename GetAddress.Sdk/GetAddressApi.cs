@@ -103,6 +103,11 @@ namespace GetAddress
             return await getService.Get(suggestion,accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
+        public async Task<Result<SuccessfulGet>> Get(string id, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await getService.Get(id, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
         public async Task<Result<string[]>> Typeahead(string term, TypeaheadOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
             return await typeaheadService.Typeahead(term, options:options, accessToken: accessToken, cancellationToken: cancellationToken);

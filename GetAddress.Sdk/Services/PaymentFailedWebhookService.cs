@@ -45,12 +45,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulPaymentFailedWebhookAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentFailedWebhookAdd>();
         }
 
         public async Task<Result<SuccessfulPaymentFailedWebhookRemove>> Remove(string id,
@@ -61,10 +57,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulPaymentFailedWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentFailedWebhookRemove>();
         }
 
         public async Task<Result<SuccessfulPaymentFailedWebhookTest>> Test(
@@ -75,10 +69,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(fullPath);
 
-            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulPaymentFailedWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentFailedWebhookTest>();
         }
 
     }

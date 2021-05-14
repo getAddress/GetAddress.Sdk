@@ -19,12 +19,10 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            var response = await HttpPost(requestUri, 
-                httpContent: options.ToHttpContent(),
+            return await HttpPost<SuccessfulAutocomplete>(requestUri, 
+                data: options,
                 administrationOrApiKey: ApiKey, 
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulAutocomplete>();
         }
 
         

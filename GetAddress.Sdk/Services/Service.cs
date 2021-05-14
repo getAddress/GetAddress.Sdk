@@ -41,28 +41,51 @@ namespace GetAddress.Services
             return await HttpClient.GetAsync(requestUri, cancellationToken);
         }
 
-        protected async Task<HttpResponseMessage> HttpPost(Uri requestUri,HttpContent httpContent = null, string administrationOrApiKey = null,
-            Token token = null, CancellationToken cancellationToken = default)
+        protected async Task<Result<S>> HttpGet<S>(Uri requestUri, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default) where S :class
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            return await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+            var result = await HttpClient.GetAsync(requestUri, cancellationToken);
+
+            return await result.ToResult<S>();
         }
 
-        protected async Task<HttpResponseMessage> HttpPut(Uri requestUri, HttpContent httpContent = null, string administrationOrApiKey = null,
-            Token token = null, CancellationToken cancellationToken = default)
+        
+
+        protected async Task<Result<S>> HttpPost<S>(Uri requestUri, object data = null, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default)where S:class
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            return await HttpClient.PutAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+            var httpContent = data == null ? null : data.ToHttpContent();
+
+            var response = await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+
+            return await response.ToResult<S>();
         }
 
-        protected async Task<HttpResponseMessage> HttpDelete(Uri requestUri, string administrationOrApiKey = null,
-            Token token = null, CancellationToken cancellationToken = default)
+        protected async Task<Result<S>> HttpPut<S>(Uri requestUri, object data = null, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default) where S : class
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            return await HttpClient.DeleteAsync(requestUri, cancellationToken: cancellationToken);
+            var httpContent = data == null ? null : data.ToHttpContent();
+
+            var response = await HttpClient.PutAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+
+            return await response.ToResult<S>();
+        }
+
+
+        protected async Task<Result<S>> HttpDelete<S>(Uri requestUri, string administrationOrApiKey = null,
+            Token token = null, CancellationToken cancellationToken = default)where S:class
+        {
+            SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
+
+            var response = await HttpClient.DeleteAsync(requestUri, cancellationToken: cancellationToken);
+
+            return await response.ToResult<S>();
         }
 
         protected Uri GetUri(string path, NameValueCollection nameValueCollection = null)

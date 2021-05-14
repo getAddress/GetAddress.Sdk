@@ -86,9 +86,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            var response = await HttpPost(requestUri, token:refreshToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulAuth>();
+            return await HttpPost<SuccessfulAuth>(requestUri, token:refreshToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulAuthRevoke>> Revoke(string administrationKey = null, CancellationToken cancellationToken = default)
@@ -99,9 +97,7 @@ namespace GetAddress.Services
 
             administrationKey = administrationKey ?? AdministrationKey;
 
-            var response = await HttpPost(requestUri, administrationOrApiKey:administrationKey, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulAuthRevoke>();
+            return await HttpPost<SuccessfulAuthRevoke>(requestUri, administrationOrApiKey:administrationKey, cancellationToken: cancellationToken);
         }
         
 

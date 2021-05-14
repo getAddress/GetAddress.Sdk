@@ -22,6 +22,20 @@ namespace GetAddress.Tests
         }
 
         [Fact]
+        public async Task Given_Known_Term_Get_With_Id_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Autocomplete("Codeberry Ltd");
+
+            result.IsSuccess.ShouldBeTrue();
+
+            var getResult = await api.Get(result.Success.Suggestions.First().Id);
+
+            getResult.IsSuccess.ShouldBeTrue();
+        }
+
+        [Fact]
         public async Task Given_Token_Get_Returns_Successful_Result()
         {
             var api = Helpers.ApiHelper.GetApi();

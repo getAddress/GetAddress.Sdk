@@ -45,12 +45,9 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulDailyLimitReachedWebhookAdd>(requestUri, 
+                data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulDailyLimitReachedWebhookAdd>();
         }
 
         public async Task<Result<SuccessfulDailyLimitReachedWebhookRemove>> Remove(string id,
@@ -61,10 +58,9 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulDailyLimitReachedWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
-            return await response.ToResult<SuccessfulDailyLimitReachedWebhookRemove>();
         }
 
         public async Task<Result<SuccessfulDailyLimitReachedWebhookTest>> Test(
@@ -75,10 +71,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(fullPath);
 
-            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+           return await HttpPost<SuccessfulDailyLimitReachedWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulDailyLimitReachedWebhookTest>();
         }
 
     }

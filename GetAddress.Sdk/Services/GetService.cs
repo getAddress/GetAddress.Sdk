@@ -19,5 +19,14 @@ namespace GetAddress.Services
             return await response.ToResult<SuccessfulGet>();
         }
 
+        public async Task<Result<SuccessfulGet>> Get(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            var path = $"Get/{id}";
+
+            var requestUri = GetUri(path);
+
+            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
+        }
+
     }
 }

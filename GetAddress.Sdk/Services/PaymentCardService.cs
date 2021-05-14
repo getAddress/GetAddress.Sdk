@@ -30,36 +30,24 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulPaymentCardRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentCardRemove>();
         }
 
         public async Task<Result<SuccessfulPaymentCardUpdate>> Update(UpdatePaymentCard request, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPut(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPut<SuccessfulPaymentCardUpdate>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            var result = await response.ToResult<SuccessfulPaymentCardUpdate>();
-
-            return result;
         }
 
         public async Task<Result<SuccessfulPaymentCardAdd>> Add(AddPaymentCard request, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulPaymentCardAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentCardAdd>();
 
         }
     }

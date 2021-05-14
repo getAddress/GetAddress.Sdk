@@ -27,14 +27,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPut(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPut<SuccessfulBillingAddressUpdate>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            var result = await response.ToResult<SuccessfulBillingAddressUpdate>();
-
-            return result;
         }
 
     }

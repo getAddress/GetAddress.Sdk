@@ -45,12 +45,7 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
-                token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentFailedReachedEmailRecipientAdd>();
+            return await HttpPost<SuccessfulPaymentFailedReachedEmailRecipientAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,  token: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulPaymentFailedReachedEmailRecipientRemove>> Remove(string id,
@@ -61,10 +56,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulPaymentFailedReachedEmailRecipientRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulPaymentFailedReachedEmailRecipientRemove>();
         }
 
     }

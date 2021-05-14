@@ -45,12 +45,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulExpiredEmailRecipientAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredEmailRecipientAdd>();
         }
 
         public async Task<Result<SuccessfulExpiredEmailRecipientRemove>> Remove(string id,
@@ -61,10 +57,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulExpiredEmailRecipientRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulExpiredEmailRecipientRemove>();
         }
     }
 }

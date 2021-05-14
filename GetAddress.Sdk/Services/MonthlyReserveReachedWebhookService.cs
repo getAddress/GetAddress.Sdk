@@ -45,12 +45,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
+            return await HttpPost<SuccessfulMonthlyReserveReachedWebhookAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,  token: accessToken, cancellationToken: cancellationToken);
 
-            var response = await HttpPost(requestUri, httpContent: content, administrationOrApiKey: AdministrationKey,
-                token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulMonthlyReserveReachedWebhookAdd>();
         }
 
         public async Task<Result<SuccessfulMonthlyReserveReachedWebhookRemove>> Remove(string id,
@@ -61,10 +57,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            var response = await HttpDelete(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulMonthlyReserveReachedWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulMonthlyReserveReachedWebhookRemove>();
         }
 
         public async Task<Result<SuccessfulMonthlyReserveReachedWebhookTest>> Test(
@@ -75,10 +69,8 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(fullPath);
 
-            var response = await HttpPost(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulMonthlyReserveReachedWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            return await response.ToResult<SuccessfulMonthlyReserveReachedWebhookTest>();
         }
 
 

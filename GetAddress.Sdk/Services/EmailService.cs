@@ -27,12 +27,8 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(path);
 
-            var content = request.ToHttpContent();
-
-            var response = await HttpPut(requestUri,httpContent: content, administrationOrApiKey: AdministrationKey,
+            var result = await HttpPut<SuccessfulEmailUpdate>(requestUri,data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
-
-            var result = await response.ToResult<SuccessfulEmailUpdate>();
 
             if(result.IsSuccess && result.Success == null)
             {
