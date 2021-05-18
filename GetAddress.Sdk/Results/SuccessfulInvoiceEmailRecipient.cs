@@ -2,12 +2,8 @@
 
 namespace GetAddress
 {
-    public class SuccessfulInvoiceEmailRecipient
+    public class SuccessfulInvoiceEmailRecipient: SuccessfulEmailRecipient
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
 
-        [JsonProperty("email-address")]
-        public string EmailAddress { get; set; }
     }
 }
