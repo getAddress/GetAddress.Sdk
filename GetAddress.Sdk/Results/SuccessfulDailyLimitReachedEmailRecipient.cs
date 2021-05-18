@@ -2,12 +2,8 @@
 
 namespace GetAddress
 {
-    public class SuccessfulDailyLimitReachedEmailRecipient
+    public class SuccessfulDailyLimitReachedEmailRecipient: SuccessfulEmailRecipient
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
 
-        [JsonProperty("email-address")]
-        public string EmailAddress { get; set; }
     }
 }

@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace GetAddress
+﻿namespace GetAddress
 {
-    public class SuccessfulPaymentFailedEmailRecipient
+    public class SuccessfulPaymentFailedEmailRecipient: SuccessfulEmailRecipient
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("email-address")]
-        public string EmailAddress { get; set; }
+        
     }
 }
