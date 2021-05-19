@@ -9,7 +9,7 @@ namespace GetAddress.Tests
         [Fact]
         public async Task Given_Valid_IpAddress_Add_Get_Remove_Return_Successful_Results()
         {
-            var api = Helpers.ApiHelper.GetApi();
+            var api = Helpers.ApiHelper.GetApiWithIpAddressWhitelistKeys();
 
             var listResult = await api.Security.IpAddressWhitelist.Get();
 

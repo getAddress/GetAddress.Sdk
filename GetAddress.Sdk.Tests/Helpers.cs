@@ -21,7 +21,7 @@ namespace GetAddress.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new Api(apiKey, adminKey, httpClient: httpClient);
+                var api = new Api(new ApiKeys(apiKey,adminKey), httpClient: httpClient);
                 
                 return api;
             }
@@ -34,7 +34,7 @@ namespace GetAddress.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new Api(httpClient: httpClient);
+                var api = new Api(new ApiKeys("", ""), httpClient: httpClient);
 
                 return api;
             }
@@ -48,10 +48,39 @@ namespace GetAddress.Tests
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = testServerUri;
 
-                var api = new Api("", adminKey, httpClient: httpClient);
+                var api = new Api(new ApiKeys("", adminKey), httpClient: httpClient);
 
                 return api;
             }
+
+            public static Api GetApiWithDomainWhitelistKeys()
+            {
+                var adminKey = Helpers.KeyHelper.GetDomainWhitelistAdminKey();
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
+
+                var api = new Api(new ApiKeys("", adminKey), httpClient: httpClient);
+
+                return api;
+            }
+
+            public static Api GetApiWithIpAddressWhitelistKeys()
+            {
+                var adminKey = Helpers.KeyHelper.GetIpAddressWhitelistAdminKey();
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
+
+                var api = new Api(new ApiKeys("", adminKey), httpClient: httpClient);
+
+                return api;
+            }
+
         }
         public static class UrlHelper
         {
@@ -86,6 +115,26 @@ namespace GetAddress.Tests
 
                 return adminKey;
             }
+
+            public static string GetDomainWhitelistAdminKey()
+            {
+                var adminKey = Environment.GetEnvironmentVariable("getaddress_domain_whitelist_adminkey", EnvironmentVariableTarget.User);
+
+                if (string.IsNullOrWhiteSpace(adminKey)) throw new Exception("Add your admin key to your Environmental Variables");
+
+                return adminKey;
+            }
+
+            public static string GetIpAddressWhitelistAdminKey()
+            {
+                var adminKey = Environment.GetEnvironmentVariable("getaddress_ipaddress_whitelist_adminkey", EnvironmentVariableTarget.User);
+
+                if (string.IsNullOrWhiteSpace(adminKey)) throw new Exception("Add your admin key to your Environmental Variables");
+
+                return adminKey;
+            }
+
+            
 
             public static string GetApiKey()
             {

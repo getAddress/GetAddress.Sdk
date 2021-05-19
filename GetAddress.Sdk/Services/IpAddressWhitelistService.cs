@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class IpAddressWhitelistService : AdministrationService
     {
         private const string path = "security/ip-address-whitelist";
-        public IpAddressWhitelistService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public IpAddressWhitelistService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

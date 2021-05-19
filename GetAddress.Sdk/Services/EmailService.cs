@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class EmailService : AdministrationService
     {
         private const string path = "email-address";
-        public EmailService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public EmailService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
         {
 
         }

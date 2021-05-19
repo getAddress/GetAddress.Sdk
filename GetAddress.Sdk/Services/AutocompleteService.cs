@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class AutocompleteService: AddressService
     {
-        public AutocompleteService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
+        public AutocompleteService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
         {
         }
 
@@ -21,7 +21,7 @@ namespace GetAddress.Services
 
             return await HttpPost<SuccessfulAutocomplete>(requestUri, 
                 data: options,
-                administrationOrApiKey: ApiKey, 
+                administrationOrApiKey: AddressLookupKey, 
                 token: accessToken, cancellationToken: cancellationToken);
         }
 

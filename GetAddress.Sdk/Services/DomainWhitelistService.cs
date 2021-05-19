@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class DomainWhitelistService : AdministrationService
     {
         private const string path = "security/domain-whitelist";
-        public DomainWhitelistService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public DomainWhitelistService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

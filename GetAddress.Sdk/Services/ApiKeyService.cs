@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class ApiKeyService : AdministrationService
     {
         private const string path = "security/api-key";
-        public ApiKeyService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public ApiKeyService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

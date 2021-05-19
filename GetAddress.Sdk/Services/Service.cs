@@ -11,12 +11,12 @@ namespace GetAddress.Services
     {
         public HttpClient HttpClient { get; }
 
-        protected Service(HttpClient httpClient = null)
+        protected Service(HttpClient httpClient)
         {
-            this.HttpClient = httpClient ?? new GetAddressHttpClient();
+            this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
         }
 
-        
 
         private void SetAuthorization(string administrationOrApiKey = null, Token token = default)
         {
@@ -84,6 +84,11 @@ namespace GetAddress.Services
 
         protected Uri GetUri(string path, NameValueCollection nameValueCollection = null)
         {
+            if (HttpClient.BaseAddress == null)
+            {
+                HttpClient.BaseAddress = new Uri("https://api.getaddress.io/");
+            }
+
             var uriBuilder = new UriBuilder(HttpClient.BaseAddress); 
 
             uriBuilder.Path = path;
@@ -105,7 +110,7 @@ namespace GetAddress.Services
     {
         public string AdministrationKey { get; set; }
 
-        public AdministrationService(string administrationKey, HttpClient httpClient = null) : base(httpClient)
+        public AdministrationService(string administrationKey, HttpClient httpClient) : base(httpClient)
         {
             AdministrationKey = administrationKey;
         }
@@ -113,11 +118,11 @@ namespace GetAddress.Services
 
     public abstract class AddressService : Service
     {
-        public string ApiKey { get; set; }
+        public string AddressLookupKey { get; set; }
 
-        public AddressService(string apiKey, HttpClient httpClient = null) : base(httpClient)
+        public AddressService(string addressLookupKey, HttpClient httpClient) : base(httpClient)
         {
-            ApiKey = apiKey;
+            AddressLookupKey = addressLookupKey;
         }
     }
 

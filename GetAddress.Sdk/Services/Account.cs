@@ -19,7 +19,7 @@ namespace GetAddress.Services
             get;
         }
 
-        public Account(string administrationKey, HttpClient httpClient = null)
+        public Account(AdministrationKey administrationKey, HttpClient httpClient = null)
         {
             BillingAddress = new BillingAddressService(administrationKey, httpClient: httpClient);
             EmailAddress = new EmailService(administrationKey, httpClient: httpClient);

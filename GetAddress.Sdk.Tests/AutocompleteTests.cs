@@ -23,7 +23,7 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var authResult = await api.Security.Authentication.GetTokens();
+            var authResult = await api.Security.Authentication.GetAddressLookupTokens();
 
             authResult.IsSuccess.ShouldBeTrue();
 

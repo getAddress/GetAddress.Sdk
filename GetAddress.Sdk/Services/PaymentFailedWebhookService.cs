@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "webhook/payment-failed/";
 
-        public PaymentFailedWebhookService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public PaymentFailedWebhookService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
         {
 
         }

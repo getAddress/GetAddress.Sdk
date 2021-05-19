@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "billing-address";
 
-        public BillingAddressService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public BillingAddressService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
         {
 
         }

@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class TypeaheadService : AddressService
     {
-        public TypeaheadService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
+        public TypeaheadService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
         {
 
         }
@@ -20,7 +20,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            return await HttpPost<string[]>(requestUri, data: options, administrationOrApiKey: ApiKey, 
+            return await HttpPost<string[]>(requestUri, data: options, administrationOrApiKey: AddressLookupKey, 
                 token: accessToken, cancellationToken: cancellationToken);
         }
 

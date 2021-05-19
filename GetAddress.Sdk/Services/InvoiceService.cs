@@ -8,7 +8,7 @@ namespace GetAddress.Services
     public class InvoiceService : AdministrationService
     {
         private const string path = "invoices";
-        public InvoiceService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public InvoiceService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

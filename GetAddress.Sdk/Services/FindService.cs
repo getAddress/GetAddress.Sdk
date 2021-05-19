@@ -8,7 +8,7 @@ namespace GetAddress.Services
 {
     public class FindService : AddressService
     {
-        public FindService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
+        public FindService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
         {
         }
 
@@ -19,7 +19,7 @@ namespace GetAddress.Services
 
             var requestUri = GetFindUri(postcode, options);
 
-            return await HttpGet<SuccessfulFind>(requestUri, administrationOrApiKey:ApiKey, token: accessToken, cancellationToken: cancellationToken);
+            return await HttpGet<SuccessfulFind>(requestUri, administrationOrApiKey:AddressLookupKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
         private Uri GetFindUri(string postcode, FindOptions options)

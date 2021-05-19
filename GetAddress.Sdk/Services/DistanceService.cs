@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class DistanceService : AddressService
     {
-        public DistanceService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
+        public DistanceService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
         {
 
         }
@@ -21,7 +21,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            return await HttpGet<Distance>(requestUri, administrationOrApiKey: ApiKey,
+            return await HttpGet<Distance>(requestUri, administrationOrApiKey: AddressLookupKey,
                token: accessToken, cancellationToken: cancellationToken);
         }
 

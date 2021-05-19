@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class PlansService: AdministrationService
     {
         private const string path = "plans/";
-        public PlansService(string administrationKey, HttpClient httpClient = null) : base(administrationKey, httpClient)
+        public PlansService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
         {
 
         }

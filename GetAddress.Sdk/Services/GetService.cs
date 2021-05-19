@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class GetService: AddressService
     {
-        public GetService(string apiKey, HttpClient httpClient = null) : base(apiKey, httpClient)
+        public GetService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
         {
         }
 
@@ -14,7 +14,7 @@ namespace GetAddress.Services
         {
             var requestUri = GetUri(suggestion.Url);
 
-            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
+            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: AddressLookupKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulGet>> Get(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -23,7 +23,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(path);
 
-            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: ApiKey, token: accessToken, cancellationToken: cancellationToken);
+            return await HttpGet<SuccessfulGet>(requestUri, administrationOrApiKey: AddressLookupKey, token: accessToken, cancellationToken: cancellationToken);
         }
 
     }

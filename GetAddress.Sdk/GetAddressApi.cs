@@ -16,26 +16,23 @@ namespace GetAddress
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
         private readonly InvoiceService invoiceService;
-        public Api(HttpClient httpClient = null) : this(null,null, httpClient: httpClient)
+
+
+        public Api(ApiKeys apiKeys, HttpClient httpClient)
         {
-            
-        }
-        public Api(string apiKey, string administrationKey, HttpClient httpClient = null)
-        {
-            httpClient = httpClient ?? new GetAddressHttpClient();
-            Security = new Security(apiKey, administrationKey, httpClient: httpClient);
-            findService = new FindService(apiKey, httpClient: httpClient);
-            autocompleteService = new AutocompleteService(apiKey, httpClient: httpClient);
-            getService = new GetService(apiKey, httpClient: httpClient);
-            typeaheadService = new TypeaheadService(apiKey, httpClient: httpClient);
-            EmailNotifications = new EmailNotifications(administrationKey, httpClient: httpClient);
-            usageService = new UsageService(administrationKey, httpClient: httpClient);
-            distanceService = new DistanceService(apiKey, httpClient: httpClient);
-            Subscription = new SubscriptionService(administrationKey, httpClient: httpClient);
-            Plans = new PlansService(administrationKey, httpClient: httpClient);
-            Webhooks = new Webhooks(administrationKey, httpClient: httpClient);
-            Account = new Account(administrationKey, httpClient: httpClient);
-            invoiceService = new InvoiceService(administrationKey, httpClient: httpClient);
+            Security = new Security(apiKeys, httpClient: httpClient);
+            findService = new FindService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            autocompleteService = new AutocompleteService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            getService = new GetService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            typeaheadService = new TypeaheadService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            EmailNotifications = new EmailNotifications(apiKeys.AdministrationKey, httpClient: httpClient);
+            usageService = new UsageService(apiKeys.AdministrationKey, httpClient: httpClient);
+            distanceService = new DistanceService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            Subscription = new SubscriptionService(apiKeys.AdministrationKey, httpClient: httpClient);
+            Plans = new PlansService(apiKeys.AdministrationKey, httpClient: httpClient);
+            Webhooks = new Webhooks(apiKeys.AdministrationKey, httpClient: httpClient);
+            Account = new Account(apiKeys.AdministrationKey, httpClient: httpClient);
+            invoiceService = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)

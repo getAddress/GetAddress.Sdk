@@ -26,12 +26,12 @@ namespace GetAddress.Services
             get;
         }
 
-        public Security(string apiKey, string administrationKey, HttpClient httpClient = null)
+        public Security(ApiKeys apiKeys, HttpClient httpClient)
         {
-            Authentication = new AuthService(apiKey, administrationKey, httpClient: httpClient);
-            ApiKey = new ApiKeyService(administrationKey, httpClient: httpClient);
-            DomainWhitelist = new DomainWhitelistService(administrationKey, httpClient: httpClient);
-            IpAddressWhitelist = new IpAddressWhitelistService(administrationKey, httpClient: httpClient);
+            Authentication = new AuthService(apiKeys, httpClient: httpClient);
+            ApiKey = new ApiKeyService(apiKeys.AdministrationKey, httpClient: httpClient);
+            DomainWhitelist = new DomainWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
+            IpAddressWhitelist = new IpAddressWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
     }
 
@@ -39,33 +39,26 @@ namespace GetAddress.Services
     {
         public const string Path = "security/token";
 
-        public AuthService(HttpClient httpClient = null) : base(httpClient)
-        {
+        public ApiKeys ApiKeys { get; set; }
 
+        public AuthService(ApiKeys apiKeys, HttpClient httpClient):base(httpClient)
+        {
+            ApiKeys = apiKeys;
         }
 
-        public AuthService(string apiKey, string administrationKey, HttpClient httpClient = null):this(httpClient)
+
+        public  async Task<Result<SuccessfulAuth>> GetAdministrationTokens(AdministrationKey administrationKey = null, CancellationToken cancellationToken = default)
         {
-            ApiKey = apiKey;
-            AdministrationKey = administrationKey;
+            administrationKey = administrationKey ?? ApiKeys.AdministrationKey;
+
+            return await Get(administrationKey?.Key, cancellationToken: cancellationToken);
         }
 
-        public string ApiKey { get; set; }
-
-        public string AdministrationKey { get; set; }
-
-        public  async Task<Result<SuccessfulAuth>> GetAdministrationTokens(string administrationKey = null, CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulAuth>> GetAddressLookupTokens(AddressLookupKey addressLookupKey = null, CancellationToken cancellationToken = default)
         {
-            administrationKey = administrationKey ?? AdministrationKey;
+            addressLookupKey = addressLookupKey ?? ApiKeys.AddressLookupKey;
 
-            return await Get(administrationKey, cancellationToken: cancellationToken);
-        }
-
-        public async Task<Result<SuccessfulAuth>> GetTokens(string apiKey = null, CancellationToken cancellationToken = default)
-        {
-            apiKey = apiKey ?? ApiKey;
-
-            return await Get(apiKey, cancellationToken: cancellationToken);
+            return await Get(addressLookupKey?.Key, cancellationToken: cancellationToken);
         }
 
 
@@ -87,15 +80,15 @@ namespace GetAddress.Services
             return await HttpPost<SuccessfulAuth>(requestUri, token:refreshToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<SuccessfulAuthRevoke>> Revoke(string administrationKey = null, CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulAuthRevoke>> Revoke(AdministrationKey administrationKey = null, CancellationToken cancellationToken = default)
         {
             var path = Path + "/revoke";
 
             var requestUri = GetUri(path);
 
-            administrationKey = administrationKey ?? AdministrationKey;
+            administrationKey = administrationKey ?? ApiKeys.AdministrationKey;
 
-            return await HttpPost<SuccessfulAuthRevoke>(requestUri, administrationOrApiKey:administrationKey, cancellationToken: cancellationToken);
+            return await HttpPost<SuccessfulAuthRevoke>(requestUri, administrationOrApiKey:administrationKey?.Key, cancellationToken: cancellationToken);
         }
         
 
