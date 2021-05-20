@@ -41,7 +41,7 @@ namespace GetAddress.Services
 
             nameValues.Add("api-version", "2020-09-09");
 
-            var fullPath = v2Path + "subscription/change-plan";
+            var fullPath = v2Path + "/change-plan";
 
             var requestUri = GetUri(fullPath, nameValueCollection: nameValues);
 

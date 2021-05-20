@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee Smith</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.5.1-beta</Version>
+    <Version>2.5.2-beta</Version>
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
