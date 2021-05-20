@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class TypeaheadService : AddressService
     {
-        public TypeaheadService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
+        public TypeaheadService(AddressLookupKey addressLookupKey, HttpClient httpClient = null) : base(addressLookupKey?.Key, httpClient)
         {
 
         }

@@ -7,7 +7,7 @@ namespace GetAddress.Services
     public class PaymentCardService: AdministrationService
     {
         private const string path = "payment-card";
-        public PaymentCardService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public PaymentCardService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

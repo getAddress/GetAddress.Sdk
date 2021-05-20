@@ -24,7 +24,7 @@ namespace GetAddress.Services
             get;
         }
 
-        public Webhooks(AdministrationKey administrationKey, HttpClient httpClient)
+        public Webhooks(AdministrationKey administrationKey, HttpClient httpClient = null)
         {
             DailyLimitReached = new DailyLimitedReachedWebhookService(administrationKey, httpClient: httpClient);
             MonthlyReserveReached = new MonthlyReserveReachedWebhookService(administrationKey, httpClient: httpClient);

@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "webhook/expired";
 
-        public ExpiredWebhookService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public ExpiredWebhookService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

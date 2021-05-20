@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "email-notification/monthly-limit-reached/";
 
-        public MonthlyReserveReachedEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public MonthlyReserveReachedEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

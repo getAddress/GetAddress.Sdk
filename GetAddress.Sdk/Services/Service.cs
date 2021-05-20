@@ -11,10 +11,9 @@ namespace GetAddress.Services
     {
         public HttpClient HttpClient { get; }
 
-        protected Service(HttpClient httpClient)
+        protected Service(HttpClient httpClient = null)
         {
-            this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-
+            HttpClient = httpClient ?? new GetAddressHttpClient();
         }
 
 
@@ -110,7 +109,7 @@ namespace GetAddress.Services
     {
         public string AdministrationKey { get; set; }
 
-        public AdministrationService(string administrationKey, HttpClient httpClient) : base(httpClient)
+        public AdministrationService(string administrationKey, HttpClient httpClient = null) : base(httpClient)
         {
             AdministrationKey = administrationKey;
         }
@@ -120,7 +119,7 @@ namespace GetAddress.Services
     {
         public string AddressLookupKey { get; set; }
 
-        public AddressService(string addressLookupKey, HttpClient httpClient) : base(httpClient)
+        public AddressService(string addressLookupKey, HttpClient httpClient = null) : base(httpClient)
         {
             AddressLookupKey = addressLookupKey;
         }

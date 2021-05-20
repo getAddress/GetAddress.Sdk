@@ -9,7 +9,7 @@ namespace GetAddress.Services
     {
         private const string path = "v4/usage";
 
-        public UsageService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public UsageService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

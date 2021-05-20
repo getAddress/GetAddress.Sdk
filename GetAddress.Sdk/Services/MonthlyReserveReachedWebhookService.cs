@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "webhook/second-limit-reached";
 
-        public MonthlyReserveReachedWebhookService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public MonthlyReserveReachedWebhookService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

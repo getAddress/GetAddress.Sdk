@@ -26,7 +26,7 @@ namespace GetAddress.Services
             get;
         }
 
-        public Security(ApiKeys apiKeys, HttpClient httpClient)
+        public Security(ApiKeys apiKeys, HttpClient httpClient = null)
         {
             Authentication = new AuthService(apiKeys, httpClient: httpClient);
             ApiKey = new ApiKeyService(apiKeys.AdministrationKey, httpClient: httpClient);
@@ -41,7 +41,7 @@ namespace GetAddress.Services
 
         public ApiKeys ApiKeys { get; set; }
 
-        public AuthService(ApiKeys apiKeys, HttpClient httpClient):base(httpClient)
+        public AuthService(ApiKeys apiKeys, HttpClient httpClient = null):base(httpClient)
         {
             ApiKeys = apiKeys;
         }

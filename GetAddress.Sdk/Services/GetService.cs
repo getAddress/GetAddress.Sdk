@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class GetService: AddressService
     {
-        public GetService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
+        public GetService(AddressLookupKey addressLookupKey, HttpClient httpClient = null) : base(addressLookupKey?.Key, httpClient)
         {
         }
 

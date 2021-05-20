@@ -17,7 +17,7 @@ namespace GetAddress.Tests
         }
 
 
-        [Fact(Skip = "Token May be out of date")]
+        [Fact]
         public async Task Given_Valid_Refresh_Token_Refresh_Returns_Successful_Result()
         {
             var api = Helpers.ApiHelper.GetApi();

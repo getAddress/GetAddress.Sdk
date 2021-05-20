@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class AutocompleteService: AddressService
     {
-        public AutocompleteService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
+        public AutocompleteService(AddressLookupKey addressLookupKey, HttpClient httpClient = null) : base(addressLookupKey?.Key, httpClient)
         {
         }
 
@@ -24,8 +24,6 @@ namespace GetAddress.Services
                 administrationOrApiKey: AddressLookupKey, 
                 token: accessToken, cancellationToken: cancellationToken);
         }
-
-        
 
         private string GetAutocompletePath(string term)
         {

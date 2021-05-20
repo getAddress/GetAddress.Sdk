@@ -18,7 +18,7 @@ namespace GetAddress
         private readonly InvoiceService invoiceService;
 
 
-        public Api(ApiKeys apiKeys, HttpClient httpClient)
+        public Api(ApiKeys apiKeys, HttpClient httpClient = null)
         {
             Security = new Security(apiKeys, httpClient: httpClient);
             findService = new FindService(apiKeys.AddressLookupKey, httpClient: httpClient);

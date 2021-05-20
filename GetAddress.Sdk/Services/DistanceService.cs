@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class DistanceService : AddressService
     {
-        public DistanceService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
+        public DistanceService(AddressLookupKey addressLookupKey, HttpClient httpClient = null) : base(addressLookupKey?.Key, httpClient)
         {
 
         }

@@ -30,7 +30,7 @@ namespace GetAddress.Services
             get;
         }
 
-        public EmailNotifications(AdministrationKey administrationKey, HttpClient httpClient)
+        public EmailNotifications(AdministrationKey administrationKey, HttpClient httpClient = null)
         {
             Expired = new  ExpiredEmailRecipientService(administrationKey, httpClient: httpClient);
             Invoice = new InvoiceEmailRecipientService(administrationKey, httpClient: httpClient);

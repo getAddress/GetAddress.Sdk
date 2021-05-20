@@ -9,7 +9,7 @@ namespace GetAddress.Services
     {
         private const string path = "subscription";
         private const string v2Path = "v2/subscription";
-        public SubscriptionService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public SubscriptionService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }

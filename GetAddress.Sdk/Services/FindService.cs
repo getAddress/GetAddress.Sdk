@@ -8,7 +8,7 @@ namespace GetAddress.Services
 {
     public class FindService : AddressService
     {
-        public FindService(AddressLookupKey addressLookupKey, HttpClient httpClient) : base(addressLookupKey?.Key, httpClient)
+        public FindService(AddressLookupKey addressLookupKey, HttpClient httpClient = null) : base(addressLookupKey?.Key, httpClient)
         {
         }
 

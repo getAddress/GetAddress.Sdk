@@ -8,7 +8,7 @@ namespace GetAddress.Services
     {
         private const string path = "cc/expired";
 
-        public ExpiredEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient) : base(administrationKey?.Key, httpClient)
+        public ExpiredEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }
