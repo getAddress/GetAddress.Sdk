@@ -28,7 +28,9 @@ namespace GetAddress.Services
 
             nameValues.Add("api-version", "2020-09-09");
 
-            var requestUri = GetUri(v2Path, nameValueCollection: nameValues);
+            var fullPath = path + "/unsubscribe";
+
+            var requestUri = GetUri(fullPath, nameValueCollection: nameValues);
 
             return await HttpPut<SuccessfulUnsubscribe>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
