@@ -32,11 +32,13 @@ namespace GetAddress.Services
                 token: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<SuccessfulPaymentCardUpdate>> Update(UpdatePaymentCard request, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public async Task<Result<SuccessfulPaymentCardUpdate>> SetDefault(string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri(path);
+            var updatePath = path + $"/{id}";
 
-            return await HttpPut<SuccessfulPaymentCardUpdate>(requestUri, data: request, administrationOrApiKey: AdministrationKey,
+            var requestUri = GetUri(updatePath);
+
+            return await HttpPut<SuccessfulPaymentCardUpdate>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
 

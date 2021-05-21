@@ -7,7 +7,7 @@ namespace GetAddress.Services
 
     public class DailyLimitReachedEmailRecipientService: AdministrationService
     {
-        private const string path = "email-notification/daily-limit-reached/";
+        private const string path = "email-notification/daily-limit-reached";
 
         public DailyLimitReachedEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {

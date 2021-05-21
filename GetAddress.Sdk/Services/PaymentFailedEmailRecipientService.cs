@@ -6,7 +6,7 @@ namespace GetAddress.Services
 {
     public class PaymentFailedEmailRecipientService : AdministrationService
     {
-        private const string path = "email-notification/payment-failed/";
+        private const string path = "email-notification/payment-failed";
 
         public PaymentFailedEmailRecipientService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
