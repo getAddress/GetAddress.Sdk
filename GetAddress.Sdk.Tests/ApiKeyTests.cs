@@ -12,7 +12,7 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var result = await api.Invoice();
+            var result = await api.Invoice.Get();
 
             result.IsSuccess.ShouldBeTrue();
         }
@@ -22,13 +22,13 @@ namespace GetAddress.Tests
         {
             var api = Helpers.ApiHelper.GetApi();
 
-            var invoices = await api.Invoice();
+            var invoices = await api.Invoice.Get();
 
             invoices.IsSuccess.ShouldBeTrue();
 
             foreach(var invoice in invoices.Success)
             {
-                var singleInvoice = await api.Invoice(invoice.Number);
+                var singleInvoice = await api.Invoice.Get(invoice.Number);
                 singleInvoice.IsSuccess.ShouldBeTrue();
             }
         }

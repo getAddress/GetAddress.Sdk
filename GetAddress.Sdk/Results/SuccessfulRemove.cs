@@ -7,13 +7,11 @@ namespace GetAddress
         [JsonProperty("message")]
         public string Message { get; set; }
     }
-
-    public class SuccessfulPaymentCardRemove : SuccessfulRemove
+    public class SuccessfulTrackWebhookRemove : SuccessfulRemove
     {
 
     }
-
-    public class SuccessfulDailyLimitReachedWebhookTest : SuccessfulRemove
+    public class SuccessfulPaymentCardRemove : SuccessfulRemove
     {
 
     }
@@ -33,17 +31,9 @@ namespace GetAddress
 
     }
 
-    public class SuccessfulPaymentFailedWebhookTest : SuccessfulRemove
-    {
-
-    }
+    
 
     public class SuccessfulMonthlyReserveReachedWebhookRemove : SuccessfulRemove
-    {
-
-    }
-
-    public class SuccessfulMonthlyReserveReachedWebhookTest : SuccessfulRemove
     {
 
     }
@@ -58,10 +48,6 @@ namespace GetAddress
 
     }
 
-    public class SuccessfulExpiredWebhookTest : SuccessfulRemove
-    {
-
-    }
 
     public class SuccessfulDailyLimitReachedEmailRecipientRemove : SuccessfulRemove
     {

@@ -10,6 +10,12 @@ namespace GetAddress
         [JsonProperty("url")]
         public string Url { get; set; }
     }
+
+    public class Track : Webhook
+    {
+
+    }
+
     public class DailyLimitReached : Webhook
     {
 

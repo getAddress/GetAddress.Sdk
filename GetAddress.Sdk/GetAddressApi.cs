@@ -15,7 +15,6 @@ namespace GetAddress
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
-        private readonly InvoiceService invoiceService;
 
 
         public Api(ApiKeys apiKeys, HttpClient httpClient = null)
@@ -32,7 +31,7 @@ namespace GetAddress
             Plans = new PlansService(apiKeys.AdministrationKey, httpClient: httpClient);
             Webhooks = new Webhooks(apiKeys.AdministrationKey, httpClient: httpClient);
             Account = new Account(apiKeys.AdministrationKey, httpClient: httpClient);
-            invoiceService = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
+            Invoice = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -57,19 +56,9 @@ namespace GetAddress
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<Invoice[]>> Invoice(AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public InvoiceService Invoice
         {
-            return await invoiceService.Get(accessToken: accessToken, cancellationToken: cancellationToken);
-        }
-        public async Task<Result<Invoice>> Invoice(string number,AccessToken accessToken = default, CancellationToken cancellationToken = default)
-        {
-            return await invoiceService.Get(number, accessToken: accessToken, cancellationToken: cancellationToken);
-        }
-
-        public async Task<Result<Invoice[]>> Invoice(DateTimeOffset from, DateTimeOffset to,
-            AccessToken accessToken = default, CancellationToken cancellationToken = default)
-        {
-            return await  invoiceService.Get(from, to, accessToken: accessToken, cancellationToken: cancellationToken);
+            get;
         }
 
         public Webhooks Webhooks
