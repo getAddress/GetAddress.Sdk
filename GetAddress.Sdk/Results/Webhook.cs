@@ -11,6 +11,12 @@ namespace GetAddress
         public string Url { get; set; }
     }
 
+
+    public class SuggestLimitReached : Webhook
+    {
+
+    }
+
     public class Track : Webhook
     {
 

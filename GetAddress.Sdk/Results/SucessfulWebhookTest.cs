@@ -29,4 +29,9 @@ namespace GetAddress
     {
 
     }
+
+    public class SuccessfulSuggestLimitReachedWebhookTest : SucessfulWebhookTest
+    {
+
+    }
 }

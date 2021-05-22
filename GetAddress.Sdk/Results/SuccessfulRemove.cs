@@ -7,6 +7,12 @@ namespace GetAddress
         [JsonProperty("message")]
         public string Message { get; set; }
     }
+
+    public class SuccessfulSuggestLimitReachedWebhookRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulTrackWebhookRemove : SuccessfulRemove
     {
 

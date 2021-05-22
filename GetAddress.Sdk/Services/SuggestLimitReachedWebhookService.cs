@@ -4,17 +4,16 @@ using System.Threading.Tasks;
 
 namespace GetAddress.Services
 {
-
-    public class TrackWebhookService : AdministrationService
+    public class SuggestLimitReachedWebhookService : AdministrationService
     {
-        private const string path = "webhook/track";
+        private const string path = "webhook/suggest-limit-reached";
 
-        public TrackWebhookService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
+        public SuggestLimitReachedWebhookService(AdministrationKey administrationKey, HttpClient httpClient = null) : base(administrationKey?.Key, httpClient)
         {
 
         }
 
-        public async Task<Result<Track>> Get(string id,
+        public async Task<Result<SuggestLimitReached>> Get(string id,
            AccessToken accessToken = default,
            CancellationToken cancellationToken = default)
         {
@@ -22,45 +21,46 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(removePath);
 
-            return await HttpGet<Track>(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuggestLimitReached>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<Track[]>> Get(
+        public async Task<Result<SuggestLimitReached[]>> Get(
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
-            return await HttpGet<Track[]>(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpGet<SuggestLimitReached[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
         }
 
-        public async Task<Result<SuccessfulTrackWebhookAdd>> Add(AddTrackWebhook request,
+        public async Task<Result<SuccessfulSuggestLimitReachedWebhookAdd>> Add(AddTrackWebhook request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri(path);
 
-            return await HttpPost<SuccessfulTrackWebhookAdd>(requestUri,
+            return await HttpPost<SuccessfulSuggestLimitReachedWebhookAdd>(requestUri,
                 data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<SuccessfulTrackWebhookRemove>> Remove(string id,
-          AccessToken accessToken = default,
-          CancellationToken cancellationToken = default)
+
+        public async Task<Result<SuccessfulSuggestLimitReachedWebhookRemove>> Remove(string id,
+        AccessToken accessToken = default,
+        CancellationToken cancellationToken = default)
         {
             var removePath = path + $"/{id}";
 
             var requestUri = GetUri(removePath);
 
-            return await HttpDelete<SuccessfulTrackWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpDelete<SuccessfulSuggestLimitReachedWebhookRemove>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<SuccessfulTrackWebhookTest>> Test(
+        public async Task<Result<SuccessfulSuggestLimitReachedWebhookTest>> Test(
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
@@ -68,7 +68,7 @@ namespace GetAddress.Services
 
             var requestUri = GetUri(fullPath);
 
-            return await HttpPost<SuccessfulTrackWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
+            return await HttpPost<SuccessfulSuggestLimitReachedWebhookTest>(requestUri, administrationOrApiKey: AdministrationKey,
                  token: accessToken, cancellationToken: cancellationToken);
         }
 
