@@ -32,6 +32,7 @@ namespace GetAddress
             Webhooks = new Webhooks(apiKeys.AdministrationKey, httpClient: httpClient);
             Account = new Account(apiKeys.AdministrationKey, httpClient: httpClient);
             Invoice = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
+            PrivateAddress = new PrivateAddressService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -57,6 +58,11 @@ namespace GetAddress
         }
 
         public InvoiceService Invoice
+        {
+            get;
+        }
+
+        public PrivateAddressService PrivateAddress
         {
             get;
         }
