@@ -8,6 +8,11 @@ namespace GetAddress
         public string Url { get; set; }
     }
 
+    public class AddSuggestLimitReachedWebhook : AddWebhook
+    {
+
+    }
+
     public class AddTrackWebhook : AddWebhook
     {
 

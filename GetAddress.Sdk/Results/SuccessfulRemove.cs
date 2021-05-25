@@ -8,6 +8,11 @@ namespace GetAddress
         public string Message { get; set; }
     }
 
+    public class SuccessfulPrivateAddressRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulSuggestLimitReachedWebhookRemove : SuccessfulRemove
     {
 

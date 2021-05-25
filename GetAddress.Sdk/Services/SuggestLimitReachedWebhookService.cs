@@ -36,7 +36,7 @@ namespace GetAddress.Services
 
         }
 
-        public async Task<Result<SuccessfulSuggestLimitReachedWebhookAdd>> Add(AddTrackWebhook request,
+        public async Task<Result<SuccessfulSuggestLimitReachedWebhookAdd>> Add(AddSuggestLimitReachedWebhook request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {

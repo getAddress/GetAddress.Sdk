@@ -20,8 +20,11 @@ namespace GetAddress
     {
 
     }
+    public class SuccessfulPaymentCardAdd:SuccessfulAdd
+    {
 
-    public class SuccessfulPaymentCardAdd
+    }
+    public class SuccessfulPrivateAddressAdd: SuccessfulAdd
     {
 
     }
