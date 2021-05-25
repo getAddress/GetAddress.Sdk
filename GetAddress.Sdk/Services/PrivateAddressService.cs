@@ -20,7 +20,7 @@ namespace GetAddress.Services
                 token: accessToken, cancellationToken: cancellationToken);
         }
 
-        public async Task<Result<PrivateAddress>> Get(string id, string postcode, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        public async Task<Result<PrivateAddress>> Get(string postcode, string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetUri($"{path}/{postcode}/{id}");
 
