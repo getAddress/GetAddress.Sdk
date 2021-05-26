@@ -47,7 +47,6 @@ namespace GetAddress
         [JsonProperty("postcode")]
         public string Postcode { get; set; }
 
-        [JsonProperty("residential")]
-        public bool? Residential { get; set; }
+
     }
 }
