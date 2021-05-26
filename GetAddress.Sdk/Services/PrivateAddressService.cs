@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Collections.Specialized;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +16,7 @@ namespace GetAddress.Services
 
         public async Task<Result<PrivateAddress[]>> Get(string postcode, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri($"{path}/{postcode}");
+            var requestUri = GetPrivateAddressUri($"{path}/{postcode}");
 
             return await HttpGet<PrivateAddress[]>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
@@ -22,10 +24,20 @@ namespace GetAddress.Services
 
         public async Task<Result<PrivateAddress>> Get(string postcode, string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri($"{path}/{postcode}/{id}");
+
+            var requestUri = GetPrivateAddressUri($"{path}/{postcode}/{id}");
 
             return await HttpGet<PrivateAddress>(requestUri, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
+        }
+
+        private Uri GetPrivateAddressUri(string path)
+        {
+            var nameValues = new NameValueCollection();
+
+            nameValues.Add("api-version", "2021-05-26");
+
+            return GetUri(path, nameValues);
         }
 
         public async Task<Result<SuccessfulPrivateAddressAdd>> Add(string postcode, AddPrivateAddress request, AccessToken accessToken = default, CancellationToken cancellationToken = default)

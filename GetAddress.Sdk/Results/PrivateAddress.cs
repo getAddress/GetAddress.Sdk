@@ -25,7 +25,7 @@ namespace GetAddress
         [JsonProperty("locality")] 
         public string Locality { get; set; }
 
-        [JsonProperty("townOrCity")] 
+        [JsonProperty("townOrcity")] 
         public string TownOrCity { get; set; }
 
         [JsonProperty("county")] 
