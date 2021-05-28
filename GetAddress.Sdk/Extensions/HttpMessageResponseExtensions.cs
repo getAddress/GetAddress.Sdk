@@ -16,12 +16,19 @@ namespace System.Net.Http
 
                 return new Result<S>(success, json, response.StatusCode);
             }
+            try
+            {
+                var failed = JsonConvert.DeserializeObject<Failed>(json);
 
-            var failed = JsonConvert.DeserializeObject<Failed>(json);
+                failed = failed ?? new Failed();
 
-            failed = failed ?? new Failed();
-
-            return new Result<S>(failed, json, response.StatusCode);
+                return new Result<S>(failed, json, response.StatusCode);
+            }
+            catch(Exception)
+            {
+                var failed = new Failed { Message = response.StatusCode.ToString() };
+                return new Result<S>(failed, json, response.StatusCode);
+            }
         }
     }
 }

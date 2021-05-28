@@ -8,6 +8,18 @@ namespace GetAddress.Tests
 
     public class AutocompleteTests
     {
+        
+
+        [Fact]
+        public async Task Given_Invalid_Postcode_Autocomplete_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Autocomplete("sl6 6lx++");
+
+            result.IsSuccess.ShouldBeTrue();
+        }
+
         [Fact]
         public async Task Given_Known_Term_Autocomplete_Returns_Successful_Result()
         {
