@@ -24,7 +24,6 @@ namespace GetAddress.Services
 
         public async Task<Result<PrivateAddress>> Get(string postcode, string id, AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
-
             var requestUri = GetPrivateAddressUri($"{path}/{postcode}/{id}");
 
             return await HttpGet<PrivateAddress>(requestUri, administrationOrApiKey: AdministrationKey,
