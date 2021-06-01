@@ -8,7 +8,16 @@ namespace GetAddress.Tests
 
     public class AutocompleteTests
     {
-        
+
+        [Fact]
+        public async Task Given_Term_With_Tab_Autocomplete_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Autocomplete("AB15	9HL 5 Netherby Road");
+
+            result.IsSuccess.ShouldBeTrue();
+        }
 
         [Fact]
         public async Task Given_Invalid_Postcode_Autocomplete_Returns_Successful_Result()

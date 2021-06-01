@@ -83,6 +83,11 @@ namespace GetAddress.Services
 
         protected Uri GetUri(string path, NameValueCollection nameValueCollection = null)
         {
+            if(path != null && path.ContainsTab())
+            {
+                path = path.Replace("\t", " ");
+            }
+
             if (HttpClient.BaseAddress == null)
             {
                 HttpClient.BaseAddress = new Uri("https://api.getaddress.io/");
@@ -103,6 +108,9 @@ namespace GetAddress.Services
 
             return uriBuilder.Uri;
         }
+
+        
+
     }
 
     public abstract class AdministrationService:Service
