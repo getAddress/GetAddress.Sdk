@@ -24,11 +24,11 @@ namespace GetAddress.Services
 
         private Uri GetFindUri(string postcode, FindOptions options)
         {
-            var nameValues = new NameValueCollection();
+            var nameValues = options.Parameters;
 
-            nameValues.Add("api-version", options.Version);
+            nameValues.Set("api-version", options.Version);
 
-            nameValues.Add("expand", true.ToString());
+            nameValues.Set("expand", true.ToString());
 
             var path = GetPath(postcode, options);
 

@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee Smith</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
     <PackageId>getAddress.Sdk</PackageId>
     <Product>getAddress.Sdk</Product>
-    <PackageReleaseNotes>Error handle unexpected results</PackageReleaseNotes>
+    <PackageReleaseNotes>Replace tab with space in url</PackageReleaseNotes>
     <RootNamespace>GetAddress</RootNamespace>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
