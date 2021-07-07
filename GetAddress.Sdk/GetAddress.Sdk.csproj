@@ -2,22 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Lee Smith</Authors>
+    <Authors>getAddress()</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.4</Version>
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
     <PackageId>getAddress.Sdk</PackageId>
     <Product>getAddress.Sdk</Product>
-    <PackageReleaseNotes>Replace tab with space in url</PackageReleaseNotes>
+    <PackageReleaseNotes>Icon update</PackageReleaseNotes>
     <RootNamespace>GetAddress</RootNamespace>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
+    <Company>getAddress.io</Company>
+    <PackageIcon>favicon-32x32.png</PackageIcon>
+    <PackageIconUrl />
+    <Description>SDK for getAddress.io API</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\DeveloperServices\Codeberry.PostalAddress.Web\wwwroot\favicon-32x32.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
