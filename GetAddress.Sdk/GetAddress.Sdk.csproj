@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>getAddress()</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.5</Version>
+    <Version>2.0.6</Version>
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
     <PackageId>getAddress.Sdk</PackageId>
     <Product>getAddress.Sdk</Product>
-    <PackageReleaseNotes>AutoUpdate</PackageReleaseNotes>
+    <PackageReleaseNotes>AutoUpgrade added to subscription</PackageReleaseNotes>
     <RootNamespace>GetAddress</RootNamespace>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>

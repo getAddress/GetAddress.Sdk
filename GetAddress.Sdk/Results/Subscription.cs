@@ -23,6 +23,9 @@ namespace GetAddress
 
         [JsonProperty("start_date")]
         public DateTime StartDate { get; set; }
+
+        [JsonProperty("auto_upgrade")]
+        public bool AutoUpgrade { get; set; }
     }
     public class PlanSummary
     {
