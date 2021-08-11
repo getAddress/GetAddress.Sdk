@@ -9,5 +9,11 @@ namespace GetAddress
         {
             get; set;
         }
+
+        [JsonProperty("autoUpgrade")]
+        public bool AutoUpgrade
+        {
+            get; set;
+        }
     }
 }
