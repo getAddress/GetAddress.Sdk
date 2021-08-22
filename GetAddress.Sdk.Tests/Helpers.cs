@@ -26,6 +26,22 @@ namespace GetAddress.Tests
                 return api;
             }
 
+            public static Api GetDirectDebtApi()
+            {
+                var apiKey = Helpers.KeyHelper.GetApiKey();
+
+                var adminKey = Helpers.KeyHelper.GetDriectDebtApiKey();
+
+                var testServerUri = Helpers.UrlHelper.GetTestServerUri();
+
+                var httpClient = new HttpClient();
+                httpClient.BaseAddress = testServerUri;
+
+                var api = new Api(new ApiKeys(apiKey, adminKey), httpClient: httpClient);
+
+                return api;
+            }
+
             public static Api GetApiNoKeys()
             {
 
@@ -154,9 +170,16 @@ namespace GetAddress.Tests
                 return apiKey;
             }
 
-           
+            public static string GetDriectDebtApiKey()
+            {
+                var apiKey = Environment.GetEnvironmentVariable("getaddress_direct_debt_apikey", EnvironmentVariableTarget.User);
 
-            
+                if (string.IsNullOrWhiteSpace(apiKey)) throw new Exception("Add your api key to your Environmental Variables");
+
+                return apiKey;
+            }
+
+
         }
 
     }

@@ -15,7 +15,7 @@ namespace GetAddress
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
-
+        
 
         public Api(ApiKeys apiKeys, HttpClient httpClient = null)
         {
@@ -33,6 +33,7 @@ namespace GetAddress
             Account = new Account(apiKeys.AdministrationKey, httpClient: httpClient);
             Invoice = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
             PrivateAddress = new PrivateAddressService(apiKeys.AdministrationKey, httpClient: httpClient);
+            DirectDebt = new DirectDebtService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -55,6 +56,11 @@ namespace GetAddress
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public DirectDebtService DirectDebt
+        {
+            get;
         }
 
         public InvoiceService Invoice

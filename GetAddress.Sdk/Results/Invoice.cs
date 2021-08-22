@@ -3,6 +3,7 @@ using System;
 
 namespace GetAddress
 {
+
     public class Invoice
     {
         [JsonProperty("date")]
