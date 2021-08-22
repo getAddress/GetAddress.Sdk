@@ -17,5 +17,10 @@ namespace GetAddress.Services
             return await HttpGet<BankDetails>(GetUri(path + "/bank-details"), administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
+        public async Task<Result<DirectDebtStatus>> Status(AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await HttpGet<DirectDebtStatus>(GetUri(path + "/status"), administrationOrApiKey: AdministrationKey,
+                token: accessToken, cancellationToken: cancellationToken);
+        }
     }
 }
