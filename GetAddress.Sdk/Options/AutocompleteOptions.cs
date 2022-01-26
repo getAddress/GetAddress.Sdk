@@ -10,6 +10,9 @@ namespace GetAddress
         [JsonProperty("all")]
         public bool? All { get; set; }
 
+        [JsonProperty("template")]
+        public string Template { get; set; }
+
         [JsonProperty("filter")]
         public AutocompleteFilter Filter { get; set; } = new AutocompleteFilter();
 

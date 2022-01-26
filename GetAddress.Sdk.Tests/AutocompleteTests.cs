@@ -89,6 +89,22 @@ namespace GetAddress.Tests
 
             result.Success.Suggestions.Length.ShouldBeGreaterThan(6);
         }
+        [Fact]
+        public async Task Given_Template_Autocomplete_Returns_Templated_Suggestions()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var options = new AutocompleteOptions
+            {
+                Template = "{outcode}--test!"
+            };
+
+            var result = await api.Autocomplete("PE15 0SR", options: options);
+
+            result.IsSuccess.ShouldBeTrue();
+
+            result.Success.Suggestions[0].Address.StartsWith("PE15");
+        }
 
         [Fact]
         public async Task Given_All_As_False_Autocomplete_Returns_6_Suggestions_For_Postcode()

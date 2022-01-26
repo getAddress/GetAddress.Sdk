@@ -154,7 +154,7 @@ namespace GetAddress.Tests
 
             public static string GetApiKey()
             {
-                var apiKey = Environment.GetEnvironmentVariable("getaddress_apikey", EnvironmentVariableTarget.User);
+                var apiKey = Environment.GetEnvironmentVariable("getaddress_test_apikey", EnvironmentVariableTarget.User);
 
                 if (string.IsNullOrWhiteSpace(apiKey)) throw new Exception("Add your api key to your Environmental Variables");
 
