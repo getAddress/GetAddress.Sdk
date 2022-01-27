@@ -13,6 +13,9 @@ namespace GetAddress
         [JsonProperty("template")]
         public string Template { get; set; }
 
+        [JsonProperty("client_ip_address")]
+        public string ClientIpAddress { get; set; }
+
         [JsonProperty("filter")]
         public AutocompleteFilter Filter { get; set; } = new AutocompleteFilter();
 
