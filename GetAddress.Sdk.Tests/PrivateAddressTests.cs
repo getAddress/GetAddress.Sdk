@@ -5,6 +5,7 @@ using Xunit;
 
 namespace GetAddress.Tests
 {
+
     public class PrivateAddressTests
     {
         [Fact]

@@ -116,7 +116,7 @@ namespace GetAddress.Tests
         {
             public static string GetAdminKey()
             {
-                var adminKey = Environment.GetEnvironmentVariable("getaddress_adminkey", EnvironmentVariableTarget.User);
+                var adminKey = Environment.GetEnvironmentVariable("getaddress_test_adminkey", EnvironmentVariableTarget.User);
 
                 if (string.IsNullOrWhiteSpace(adminKey)) throw new Exception("Add your admin key to your Environmental Variables");
 

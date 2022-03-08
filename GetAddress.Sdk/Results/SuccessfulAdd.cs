@@ -11,6 +11,11 @@ namespace GetAddress
         public string Id{ get; set; }
     }
 
+    public class SuccessfulDomainTokenAdd : SuccessfulAdd
+    {
+
+    }
+
     public class SuccessfulSuggestLimitReachedWebhookAdd : SuccessfulAdd
     {
 
