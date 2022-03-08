@@ -9,7 +9,7 @@ namespace GetAddress.Services
             get;
         }
 
-        public DomainTokenService DomainTokenService
+        public DomainTokenService DomainToken
         {
             get;
         }
@@ -35,7 +35,7 @@ namespace GetAddress.Services
             ApiKey = new ApiKeyService(apiKeys.AdministrationKey, httpClient: httpClient);
             DomainWhitelist = new DomainWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
             IpAddressWhitelist = new IpAddressWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
-            DomainTokenService = new DomainTokenService(apiKeys.AdministrationKey, httpClient: httpClient);
+            DomainToken = new DomainTokenService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
     }
 

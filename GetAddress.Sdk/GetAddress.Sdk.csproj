@@ -31,7 +31,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="https:\github.com\getAddress\GetAddress.Sdk\blob\main\README.md" />
+    
   </ItemGroup>
 
 </Project>

@@ -15,21 +15,21 @@ namespace GetAddress.Tests
                 Url = "https://getaddress.io"
             };
 
-            var addResult = await api.Security.DomainTokenService.Add(addDomainToken);
+            var addResult = await api.Security.DomainToken.Add(addDomainToken);
 
             addResult.IsSuccess.ShouldBeTrue();
 
-            var getResult = await api.Security.DomainTokenService.Get(addResult.Success.Id);
+            var getResult = await api.Security.DomainToken.Get(addResult.Success.Id);
 
             getResult.IsSuccess.ShouldBeTrue();
 
-            var listResult = await api.Security.DomainTokenService.List();
+            var listResult = await api.Security.DomainToken.List();
 
             listResult.IsSuccess.ShouldBeTrue();
 
             listResult.Success.Length.ShouldBeGreaterThan(0);
 
-            var removeResult = await api.Security.DomainTokenService.Remove(addResult.Success.Id);
+            var removeResult = await api.Security.DomainToken.Remove(addResult.Success.Id);
 
             removeResult.IsSuccess.ShouldBeTrue();
 
