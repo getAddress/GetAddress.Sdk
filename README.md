@@ -17,7 +17,7 @@ services.AddHttpClient<GetAddress.Api>();
 ```
 ### Find postal addresses for a UK postcode and optional house name/number 
 ```
-public void Find(GetAddress.Api api)
+public async Task Find(GetAddress.Api api)
 {
   var result = await api.Find("TR19 7AA");
   
@@ -41,7 +41,7 @@ public void Find(GetAddress.Api api)
 ```
 ### Autocomplete and lookup addresses
 ```
-public void Autocomplete(GetAddress.Api api)
+public async Task Autocomplete(GetAddress.Api api)
 {
   var autocompleteResult = await api.Autocomplete("High St");
 
