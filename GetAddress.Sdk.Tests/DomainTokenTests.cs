@@ -12,7 +12,9 @@ namespace GetAddress.Tests
             var api = Helpers.ApiHelper.GetApi();
 
             var addDomainToken = new AddDomainToken {
-                Url = "https://getaddress.io"
+                Url = "https://getaddress.io",
+                Limit = 10,
+                LimitMinutes = 5
             };
 
             var addResult = await api.Security.DomainToken.Add(addDomainToken);
