@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Specialized;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,16 +37,22 @@ namespace GetAddress.Services
 
         }
 
+
         public async Task<Result<SuccessfulDailyLimitReachedWebhookAdd>> Add(AddDailyLimitReachedWebhook request,
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri(path);
-
-            return await HttpPost<SuccessfulDailyLimitReachedWebhookAdd>(requestUri, 
+            
+            var nameValueCollection = request.Options?.GetNameValueCollectionOrDefault();
+            
+            var requestUri = GetUri(path, nameValueCollection);
+            
+            return await HttpPost<SuccessfulDailyLimitReachedWebhookAdd>(requestUri,
                 data: request, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
         }
+
+        
 
         public async Task<Result<SuccessfulDailyLimitReachedWebhookRemove>> Remove(string id,
           AccessToken accessToken = default,

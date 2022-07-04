@@ -29,6 +29,8 @@ namespace GetAddress.Tests
                 Url = @$"https://getaddress.io?test={Guid.NewGuid()}"
             };
 
+            request.Options = new AddWebhookOptions { Auth = "auth_test", P256dh = "p256dh_test" };
+
             var addResult = await api.Webhooks.DailyLimitReached.Add(request);
 
             addResult.IsSuccess.ShouldBeTrue();

@@ -39,7 +39,9 @@ namespace GetAddress.Services
             AccessToken accessToken = default,
             CancellationToken cancellationToken = default)
         {
-            var requestUri = GetUri(path);
+            var nameValueCollection = request.Options?.GetNameValueCollectionOrDefault();
+
+            var requestUri = GetUri(path,nameValueCollection);
 
             return await HttpPost<SuccessfulMonthlyReserveReachedWebhookAdd>(requestUri, data: request, administrationOrApiKey: AdministrationKey,  token: accessToken, cancellationToken: cancellationToken);
 
