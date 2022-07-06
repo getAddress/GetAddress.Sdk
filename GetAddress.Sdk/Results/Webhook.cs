@@ -31,7 +31,10 @@ namespace GetAddress
     {
 
     }
+    public class LoginRequested : Webhook
+    {
 
+    }
 
     public class MonthlyReserveReached : Webhook
     {

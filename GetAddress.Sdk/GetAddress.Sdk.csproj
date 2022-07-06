@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>getAddress()</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.3</Version>
+    <Version>2.1.4</Version>
     <RepositoryUrl>https://github.com/getAddress/GetAddress.Sdk.2.git</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>getaddress.io getaddress postcode address autocomplete</PackageTags>
     <PackageId>getAddress.Sdk</PackageId>
     <Product>getAddress.Sdk</Product>
-    <PackageReleaseNotes>optional webhook parameters</PackageReleaseNotes>
+    <PackageReleaseNotes>Login Requested Webhook </PackageReleaseNotes>
     <RootNamespace>GetAddress</RootNamespace>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
@@ -20,6 +20,7 @@
     <Description>SDK for getAddress.io API</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://getAddress.io</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,9 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\DeveloperServices\Codeberry.PostalAddress.Web\wwwroot\favicon-32x32.png">
+    <None Include="..\..\DeveloperServices\Codeberry.PostalAddress.Web2\wwwroot\favicon\favicon-32x32.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
     
   </ItemGroup>

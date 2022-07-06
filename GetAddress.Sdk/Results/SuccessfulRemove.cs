@@ -63,7 +63,10 @@ namespace GetAddress
     {
 
     }
+    public class SuccessfulLoginRequestedWebhookRemove : SuccessfulRemove
+    {
 
+    }
 
     public class SuccessfulDailyLimitReachedEmailRecipientRemove : SuccessfulRemove
     {

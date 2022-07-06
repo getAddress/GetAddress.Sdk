@@ -20,6 +20,11 @@ namespace GetAddress
     {
 
     }
+    public class SuccessfulLoginRequestedWebhookTest : SucessfulWebhookTest
+    {
+
+    }
+
     public class SuccessfulDailyLimitReachedWebhookTest : SucessfulWebhookTest
     {
 

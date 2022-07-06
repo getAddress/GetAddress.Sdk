@@ -4,6 +4,12 @@ namespace GetAddress.Services
 {
     public class Webhooks
     {
+
+        public LoginRequestedWebhookService LoginRequested
+        {
+            get;
+        }
+
         public DailyLimitedReachedWebhookService DailyLimitReached
         {
             get;
@@ -42,6 +48,7 @@ namespace GetAddress.Services
             Expired = new ExpiredWebhookService(administrationKey, httpClient: httpClient);
             Track = new TrackWebhookService(administrationKey, httpClient: httpClient);
             SuggestLimitReached = new SuggestLimitReachedWebhookService(administrationKey, httpClient: httpClient);
+            LoginRequested = new LoginRequestedWebhookService(administrationKey, httpClient: httpClient);
         }
     }
 }

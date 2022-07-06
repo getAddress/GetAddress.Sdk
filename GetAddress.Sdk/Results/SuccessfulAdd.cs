@@ -54,6 +54,11 @@ namespace GetAddress
 
     }
 
+    public class SuccessfulLoginRequestedWebhookAdd : SuccessfulAdd
+    {
+
+    }
+
     public class SuccessfulInvoiceEmailRecipientAdd: SuccessfulAdd
     {
 

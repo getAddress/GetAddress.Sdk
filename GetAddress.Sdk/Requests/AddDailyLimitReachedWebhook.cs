@@ -40,6 +40,11 @@ namespace GetAddress
 
     }
 
+    public class AddLoginRequestedWebhook : AddWebhook
+    {
+        public AddWebhookOptions Options { get; set; }
+    }
+
     public class AddExpiredWebhook : AddWebhook
     {
         public AddWebhookOptions Options { get; set; }
