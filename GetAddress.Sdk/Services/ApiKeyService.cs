@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,6 +27,17 @@ namespace GetAddress.Services
             var requestUri = GetUri(path);
 
             return await HttpPut<SuccessfulApiKeyUpdate>(requestUri, administrationOrApiKey: AdministrationKey,
+                token: accessToken, cancellationToken: cancellationToken);
+
+        }
+
+        public async Task<Result<SuccessfulApiKeyUpdate>> Swap(SwapApiKey swapApiKey, AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            var swapPath = path + "/swap";
+
+            var requestUri = GetUri(swapPath);
+
+            return await HttpPut<SuccessfulApiKeyUpdate>(requestUri,data:swapApiKey, administrationOrApiKey: AdministrationKey,
                 token: accessToken, cancellationToken: cancellationToken);
 
         }
