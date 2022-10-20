@@ -19,11 +19,17 @@ namespace GetAddress.Services
             get;
         }
 
+        public PaymentMethodService PaymentMethods
+        {
+            get;
+        }
+
         public Account(AdministrationKey administrationKey, HttpClient httpClient = null)
         {
             BillingAddress = new BillingAddressService(administrationKey, httpClient: httpClient);
             EmailAddress = new EmailService(administrationKey, httpClient: httpClient);
             PaymentCard = new PaymentCardService(administrationKey, httpClient: httpClient);
+            PaymentMethods = new PaymentMethodService(administrationKey, httpClient: httpClient);
         }
     }
 }
