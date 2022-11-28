@@ -11,7 +11,9 @@ namespace GetAddress
 
         private readonly FindService findService;
         private readonly AutocompleteService autocompleteService;
+        private readonly LocationService locationService;
         private readonly GetService getService;
+        private readonly GetLocationService getLocationService;
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
@@ -22,7 +24,9 @@ namespace GetAddress
             Security = new Security(apiKeys, httpClient: httpClient);
             findService = new FindService(apiKeys.AddressLookupKey, httpClient: httpClient);
             autocompleteService = new AutocompleteService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            locationService = new LocationService(apiKeys.AddressLookupKey, httpClient: httpClient);
             getService = new GetService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            getLocationService = new GetLocationService(apiKeys.AddressLookupKey, httpClient: httpClient);
             typeaheadService = new TypeaheadService(apiKeys.AddressLookupKey, httpClient: httpClient);
             EmailNotifications = new EmailNotifications(apiKeys.AdministrationKey, httpClient: httpClient);
             usageService = new UsageService(apiKeys.AdministrationKey, httpClient: httpClient);
@@ -112,6 +116,11 @@ namespace GetAddress
             return await autocompleteService.Autocomplete(term, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
+        public async Task<Result<SuccessfulLocation>> Location(string term, LocationOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await locationService.Location(term, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
         public async Task<Result<SuccessfulGet>> Get(Suggestion  suggestion, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
             return await getService.Get(suggestion,accessToken: accessToken, cancellationToken: cancellationToken);
@@ -120,6 +129,14 @@ namespace GetAddress
         public async Task<Result<SuccessfulGet>> Get(string id, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
             return await getService.Get(id, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+        public async Task<Result<SuccessfulGetLocation>> GetLocation(string id, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await getLocationService.GetLocation(id, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+        public async Task<Result<SuccessfulGetLocation>> GetLocation(LocationSuggestion suggestion, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await getLocationService.GetLocation(suggestion, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<string[]>> Typeahead(string term, TypeaheadOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)

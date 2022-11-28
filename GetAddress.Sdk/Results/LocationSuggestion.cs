@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-
 namespace GetAddress
 {
-    public class Suggestion
+    public class LocationSuggestion
     {
-        [JsonProperty("address")]
-        public string Address { get; set; }
+        [JsonProperty("location")]
+        public string Location { get; set; }
 
         [JsonProperty("url")]
         public string Url { get; set; }
