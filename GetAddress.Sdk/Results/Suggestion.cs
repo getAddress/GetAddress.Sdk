@@ -15,4 +15,10 @@ namespace GetAddress
         public string Id { get; set; }
 
     }
+
+    public class SuggestionAndDistance: Suggestion
+    {
+        [JsonProperty("distance")]
+        public string Distance { get; set; }
+    }
 }
