@@ -18,7 +18,7 @@ namespace GetAddress
         private readonly TypeaheadService typeaheadService;
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
-        
+        private readonly ValidateService validateService;
 
         public Api(ApiKeys apiKeys, HttpClient httpClient = null)
         {
@@ -40,6 +40,7 @@ namespace GetAddress
             PrivateAddress = new PrivateAddressService(apiKeys.AdministrationKey, httpClient: httpClient);
             DirectDebt = new DirectDebtService(apiKeys.AdministrationKey, httpClient: httpClient);
             nearestService = new NearestService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            validateService = new ValidateService(apiKeys.AddressLookupKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -127,6 +128,12 @@ namespace GetAddress
         {
             return await locationService.Location(term, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
         }
+
+        public async Task<Result<SuccessfulValidation>> Validate(string address, ValidateOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await validateService.Validate(address, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
 
         public async Task<Result<SuccessfulGet>> Get(Suggestion  suggestion, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {
