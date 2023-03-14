@@ -21,4 +21,6 @@ namespace GetAddress
         [JsonProperty("distance")]
         public string Distance { get; set; }
     }
+
+
 }

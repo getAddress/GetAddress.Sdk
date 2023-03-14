@@ -12,6 +12,7 @@ namespace GetAddress
         private readonly FindService findService;
         private readonly AutocompleteService autocompleteService;
         private readonly NearestService nearestService;
+        private readonly NearestLocationService nearestLocationService;
         private readonly LocationService locationService;
         private readonly GetService getService;
         private readonly GetLocationService getLocationService;
@@ -41,6 +42,7 @@ namespace GetAddress
             DirectDebt = new DirectDebtService(apiKeys.AdministrationKey, httpClient: httpClient);
             nearestService = new NearestService(apiKeys.AddressLookupKey, httpClient: httpClient);
             validateService = new ValidateService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            nearestLocationService = new NearestLocationService(apiKeys.AddressLookupKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -123,6 +125,12 @@ namespace GetAddress
         {
             return await nearestService.Nearest(latitude, longitude, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
         }
+
+        public async Task<Result<SuccessfulNearestLocation>> NearestLocation(double latitude, double longitude, NearestLocationOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
+        {
+            return await nearestLocationService.NearestLocation(latitude, longitude, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
 
         public async Task<Result<SuccessfulLocation>> Location(string term, LocationOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)
         {

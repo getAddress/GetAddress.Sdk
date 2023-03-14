@@ -17,4 +17,18 @@ namespace GetAddress.Tests
             result.IsSuccess.ShouldBeTrue();
         }
     }
+
+    public class NearestLocationTests
+    {
+
+        [Fact]
+        public async Task Given_A_Valid_GeoLocation_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.NearestLocation(53.0833957, -2.8692477);
+
+            result.IsSuccess.ShouldBeTrue();
+        }
+    }
 }
