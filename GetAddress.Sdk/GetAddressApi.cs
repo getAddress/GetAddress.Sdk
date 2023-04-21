@@ -9,7 +9,6 @@ namespace GetAddress
     public class Api
     {
 
-        private readonly FindService findService;
         private readonly AutocompleteService autocompleteService;
         private readonly NearestService nearestService;
         private readonly NearestLocationService nearestLocationService;
@@ -24,7 +23,6 @@ namespace GetAddress
         public Api(ApiKeys apiKeys, HttpClient httpClient = null)
         {
             Security = new Security(apiKeys, httpClient: httpClient);
-            findService = new FindService(apiKeys.AddressLookupKey, httpClient: httpClient);
             autocompleteService = new AutocompleteService(apiKeys.AddressLookupKey, httpClient: httpClient);
             locationService = new LocationService(apiKeys.AddressLookupKey, httpClient: httpClient);
             getService = new GetService(apiKeys.AddressLookupKey, httpClient: httpClient);
@@ -110,10 +108,6 @@ namespace GetAddress
         public Security Security
         {
             get;
-        }
-        public async Task<Result<SuccessfulFind>> Find(string postcode, FindOptions options =null, AccessToken  accessToken = null, CancellationToken cancellationToken = default)
-        {
-            return await findService.Find(postcode, options: options, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
         public async Task<Result<SuccessfulAutocomplete>> Autocomplete(string term, AutocompleteOptions options = null, AccessToken accessToken = null, CancellationToken cancellationToken = default)

@@ -15,30 +15,6 @@ services.AddSingleton(s => new GetAddress.ApiKeys("<YOUR ADDRESS LOOKUP KEY>", "
 
 services.AddHttpClient<GetAddress.Api>();
 ```
-### Find postal addresses for a UK postcode and optional house name/number 
-```
-public async Task Find(GetAddress.Api api)
-{
-  var result = await api.Find("TR19 7AA");
-  
-  if (result.IsSuccess)
-  {
-      foreach(var address in result.Success.Addresses)
-      {
-          var line1 = address.Line1;
-          var line2 = address.Line2;
-          var line3 = address.Line3;
-          var line4 = address.Line4;
-          var buildName = address.BuildingName;
-          //....
-      }
-  }
-  else
-  {
-      var errorMessage = result.Failed.Message;
-  }
-}
-```
 ### Autocomplete and lookup addresses
 ```
 public async Task Autocomplete(GetAddress.Api api)
