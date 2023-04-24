@@ -29,11 +29,7 @@ namespace GetAddress
     {
 
     }
-    public class SuccessfulPrivateAddressAdd: SuccessfulAdd
-    {
-
-    }
-
+    
     public class SuccessfulPaymentFailedWebhookAdd : SuccessfulAdd
     {
 

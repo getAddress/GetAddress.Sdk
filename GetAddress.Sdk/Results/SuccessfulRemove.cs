@@ -13,10 +13,7 @@ namespace GetAddress
 
     }
 
-    public class SuccessfulPrivateAddressRemove : SuccessfulRemove
-    {
-
-    }
+   
 
     public class SuccessfulSuggestLimitReachedWebhookRemove : SuccessfulRemove
     {

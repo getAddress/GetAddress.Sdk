@@ -36,7 +36,6 @@ namespace GetAddress
             Webhooks = new Webhooks(apiKeys.AdministrationKey, httpClient: httpClient);
             Account = new Account(apiKeys.AdministrationKey, httpClient: httpClient);
             Invoice = new InvoiceService(apiKeys.AdministrationKey, httpClient: httpClient);
-            PrivateAddress = new PrivateAddressService(apiKeys.AdministrationKey, httpClient: httpClient);
             DirectDebt = new DirectDebtService(apiKeys.AdministrationKey, httpClient: httpClient);
             nearestService = new NearestService(apiKeys.AddressLookupKey, httpClient: httpClient);
             validateService = new ValidateService(apiKeys.AddressLookupKey, httpClient: httpClient);
@@ -75,10 +74,6 @@ namespace GetAddress
             get;
         }
 
-        public PrivateAddressService PrivateAddress
-        {
-            get;
-        }
 
         public Webhooks Webhooks
         {
