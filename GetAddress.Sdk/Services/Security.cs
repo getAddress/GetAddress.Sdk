@@ -29,6 +29,11 @@ namespace GetAddress.Services
             get;
         }
 
+        public AdminPermissionsService AdminPermissions
+        {
+            get;
+        }
+
         public Security(ApiKeys apiKeys, HttpClient httpClient = null)
         {
             Authentication = new AuthService(apiKeys, httpClient: httpClient);
@@ -36,6 +41,7 @@ namespace GetAddress.Services
             DomainWhitelist = new DomainWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
             IpAddressWhitelist = new IpAddressWhitelistService(apiKeys.AdministrationKey, httpClient: httpClient);
             DomainToken = new DomainTokenService(apiKeys.AdministrationKey, httpClient: httpClient);
+            AdminPermissions = new AdminPermissionsService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
     }
 

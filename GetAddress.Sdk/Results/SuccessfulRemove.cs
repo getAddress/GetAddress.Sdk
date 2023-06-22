@@ -89,4 +89,9 @@ namespace GetAddress
     {
 
     }
+
+    public class SuccessfulAdminPermissionRemove : SuccessfulRemove
+    {
+
+    }
 }

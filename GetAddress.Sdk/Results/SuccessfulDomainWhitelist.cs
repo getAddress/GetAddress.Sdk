@@ -2,6 +2,7 @@
 
 namespace GetAddress
 {
+
     public class SuccessfulDomainWhitelist
     {
         [JsonProperty("id")]
@@ -10,5 +11,6 @@ namespace GetAddress
         [JsonProperty("name")]
         public string Name { get; set; }
     }
+
 
 }
