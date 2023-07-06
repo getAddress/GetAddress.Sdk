@@ -15,5 +15,12 @@ namespace GetAddress
         {
             get; set;
         }
+
+
+        [JsonProperty("attachInvoices")]
+        public bool AttachInvoices
+        {
+            get; set;
+        }
     }
 }
