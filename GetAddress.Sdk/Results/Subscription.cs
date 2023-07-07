@@ -26,6 +26,9 @@ namespace GetAddress
 
         [JsonProperty("auto_upgrade")]
         public bool AutoUpgrade { get; set; }
+
+        [JsonProperty("attach_invoices")]
+        public bool AttachInvoices { get; set; }
     }
     public class PlanSummary
     {
