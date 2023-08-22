@@ -70,6 +70,11 @@ namespace GetAddress
 
     }
 
+    public class SuccessfulRateLimitReachedEmailRecipientRemove : SuccessfulRemove
+    {
+
+    }
+
     public class SuccessfulMonthlyReserveReachedEmailRecipientRemove : SuccessfulRemove
     {
 

@@ -25,6 +25,11 @@ namespace GetAddress.Services
             get;
         }
 
+        public RateLimitReachedEmailRecipientService RateLimitReached
+        {
+            get;
+        }
+
         public MonthlyReserveReachedEmailRecipientService MonthlyReserveReached
         {
             get;
@@ -37,6 +42,7 @@ namespace GetAddress.Services
             DailyLimitReached = new DailyLimitReachedEmailRecipientService(administrationKey, httpClient: httpClient);
             MonthlyReserveReached = new MonthlyReserveReachedEmailRecipientService(administrationKey, httpClient: httpClient);
             PaymentFailed = new PaymentFailedEmailRecipientService(administrationKey, httpClient: httpClient);
+            RateLimitReached = new RateLimitReachedEmailRecipientService(administrationKey,httpClient: httpClient); 
         }
     }
 }
