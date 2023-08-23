@@ -32,12 +32,12 @@ namespace GetAddress
 
     public class AddSuggestLimitReachedWebhook : AddWebhook
     {
-
+        public AddWebhookOptions Options { get; set; }
     }
 
     public class AddTrackWebhook : AddWebhook
     {
-
+        public AddWebhookOptions Options { get; set; }
     }
 
     public class AddLoginRequestedWebhook : AddWebhook
