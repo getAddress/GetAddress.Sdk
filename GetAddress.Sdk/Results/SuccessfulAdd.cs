@@ -16,6 +16,11 @@ namespace GetAddress
 
     }
 
+    public class SuccessfulPrivateAddressAdd : SuccessfulAdd
+    {
+
+    }
+
     public class SuccessfulSuggestLimitReachedWebhookAdd : SuccessfulAdd
     {
 

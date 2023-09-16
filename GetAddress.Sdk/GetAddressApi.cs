@@ -19,6 +19,7 @@ namespace GetAddress
         private readonly UsageService usageService;
         private readonly DistanceService distanceService;
         private readonly ValidateService validateService;
+        
 
         public Api(ApiKeys apiKeys, HttpClient httpClient = null)
         {
@@ -40,6 +41,7 @@ namespace GetAddress
             nearestService = new NearestService(apiKeys.AddressLookupKey, httpClient: httpClient);
             validateService = new ValidateService(apiKeys.AddressLookupKey, httpClient: httpClient);
             nearestLocationService = new NearestLocationService(apiKeys.AddressLookupKey, httpClient: httpClient);
+            PrivateAddress = new PrivateAddressService(apiKeys.AdministrationKey, httpClient: httpClient);
         }
 
         public async Task<Result<Usage>> Usage(AccessToken accessToken = default, CancellationToken cancellationToken = default)
@@ -62,6 +64,11 @@ namespace GetAddress
             AccessToken accessToken = default, CancellationToken cancellationToken = default)
         {
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
+        public PrivateAddressService PrivateAddress
+        {
+            get;
         }
 
         public DirectDebtService DirectDebt
