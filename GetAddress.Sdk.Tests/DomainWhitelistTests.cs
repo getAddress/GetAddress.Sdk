@@ -78,7 +78,8 @@ namespace GetAddress.Tests
                  ViewMonitor = true,
                  ViewNotifications = true,
                  ViewPaymentMethods = true,
-                 ViewSecurity = true
+                 ViewSecurity = true,
+                 Addresses = true
                 }
             };
             

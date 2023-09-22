@@ -44,6 +44,9 @@ namespace GetAddress
 
         [JsonProperty("view_notifications")]
         public bool ViewNotifications { get; set; }
+
+        [JsonProperty("addresses")]
+        public bool Addresses { get; set; }
     }
 
 
