@@ -39,7 +39,7 @@ namespace GetAddress.Services
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            var result = await HttpClient.GetAsync(requestUri, cancellationToken);
+            var result = await HttpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
 
             return await result.ToResult<S>();
         }
@@ -53,7 +53,7 @@ namespace GetAddress.Services
 
             var httpContent = data == null ? null : data.ToHttpContent();
 
-            var response = await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+            var response = await HttpClient.PostAsync(requestUri, httpContent, cancellationToken: cancellationToken).ConfigureAwait(false);
 
             return await response.ToResult<S>();
         }
@@ -65,7 +65,7 @@ namespace GetAddress.Services
 
             var httpContent = data == null ? null : data.ToHttpContent();
 
-            var response = await HttpClient.PutAsync(requestUri, httpContent, cancellationToken: cancellationToken);
+            var response = await HttpClient.PutAsync(requestUri, httpContent, cancellationToken: cancellationToken).ConfigureAwait(false);
 
             return await response.ToResult<S>();
         }
@@ -76,7 +76,7 @@ namespace GetAddress.Services
         {
             SetAuthorization(administrationOrApiKey: administrationOrApiKey, token: token);
 
-            var response = await HttpClient.DeleteAsync(requestUri, cancellationToken: cancellationToken);
+            var response = await HttpClient.DeleteAsync(requestUri, cancellationToken: cancellationToken).ConfigureAwait(false);
 
             return await response.ToResult<S>();
         }
