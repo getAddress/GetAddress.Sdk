@@ -28,9 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\DeveloperServices\Codeberry.PostalAddress.Web2\wwwroot\favicon\favicon-32x32.png">
+    <None Include="..\favicon-32x32.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
