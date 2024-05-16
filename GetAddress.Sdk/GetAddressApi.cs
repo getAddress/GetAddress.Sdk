@@ -66,6 +66,13 @@ namespace GetAddress
             return await distanceService.Distance(postcodeFrom, postcodeTo, accessToken: accessToken, cancellationToken: cancellationToken);
         }
 
+        public async Task<Result<DistanceMetres>> Distance(double toLatitude, double toLongitude,
+            double fromLatitude, double fromLongitude,
+            AccessToken accessToken = default, CancellationToken cancellationToken = default)
+        {
+            return await distanceService.Distance(toLatitude, toLongitude, fromLatitude, fromLongitude, accessToken: accessToken, cancellationToken: cancellationToken);
+        }
+
         public PrivateAddressService PrivateAddress
         {
             get;

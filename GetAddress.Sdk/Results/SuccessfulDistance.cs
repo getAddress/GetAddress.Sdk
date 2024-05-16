@@ -12,7 +12,13 @@ namespace GetAddress
 
         [JsonProperty("metres")]
         public double Metres { get; set; }
+    }
 
+    public class DistanceMetres
+    {
+
+        [JsonProperty("metres")]
+        public double Metres { get; set; }
     }
 
     public class Point

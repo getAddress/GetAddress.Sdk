@@ -15,5 +15,15 @@ namespace GetAddress.Tests
 
             result.IsSuccess.ShouldBeTrue();
         }
+
+        [Fact]
+        public async Task Given_Known_Coordinates_Distance_Returns_Successful_Result()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Distance(52.245927, -0.891623, 52.493816045614025, 0.054838301754385976);
+
+            result.IsSuccess.ShouldBeTrue();
+        }
     }
 }
