@@ -16,5 +16,26 @@ namespace GetAddress.Tests
 
             result.IsSuccess.ShouldBeTrue();
         }
+
+
+        [Fact]
+        public async Task Given_Known_Address_Returns_Successful_Result2()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Validate("28b pe15 0sr");
+
+            result.IsSuccess.ShouldBeTrue();
+        }
+
+        [Fact]
+        public async Task Given_Known_Address_Returns_Successful_Result3()
+        {
+            var api = Helpers.ApiHelper.GetApi();
+
+            var result = await api.Validate("28b pe15 0sr", new ValidateOptions { Residential = true });
+
+            result.IsSuccess.ShouldBeTrue();
+        }
     }
 }
