@@ -10,6 +10,9 @@ namespace GetAddress
         [JsonProperty("all")]
         public bool? All { get; set; }
 
+        [JsonProperty("show_postcode")]
+        public bool? ShowPostcode { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
 
